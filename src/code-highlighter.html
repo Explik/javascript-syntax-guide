@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/an-old-hope.min.css">-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+</head>
+
+<body>
+
+    <pre><code id="code-block" class="language-javascript">
+for(INIT_LABEL; CONDITION_LABEL; INCREMENT_LABEL) {
+   STATEMENT_LABEL_1; 
+   STATEMENT_LABEL_2; 
+}
+</code></pre>
+    <script src="script.js"></script>
+    <script>
+        function highlightCode() {
+            // Highlight code using highlight.js
+            const codeBlock = document.getElementById('code-block');
+            hljs.highlightElement(codeBlock);
+
+            // Highlight specific labels 
+            highlightLabels([codeBlock]);
+        }
+
+        // Run highlight function on page load
+        document.addEventListener('DOMContentLoaded', highlightCode);
+    </script>
+
+</body>
+
+</html>
