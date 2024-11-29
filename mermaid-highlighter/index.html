@@ -10,10 +10,10 @@
   <h1>JavaScript For Loop Flowchart</h1>
   <div class="mermaid">
     flowchart TD
-        A[Evaluate INIT_LABEL] --> B{Condition}
-        B -->|true| C[Statement 1]
-        C --> D[Statement 2]
-        D --> E[Increment]
+        A[Evaluate INIT_LABEL] --> B{Evaluate CONDITION_LABEL}
+        B -->|true| C[Evaluate STATEMENT_LABEL_1]
+        C --> D[Evaluate STATEMENT_LABEL_2]
+        D --> E[Evaluate INCREMENT_LABEL]
         E --> B
         B -->|false| F[End of Loop]
   </div>
