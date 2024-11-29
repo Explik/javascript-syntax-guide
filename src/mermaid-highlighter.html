@@ -17,7 +17,7 @@
         B -->|false| G[Statement after Loop]
         B -->|true| C[Evaluate STATEMENT_LABEL_1]
         C --> D[Evaluate STATEMENT_LABEL_2]
-        D --> E[...]
+        D --> E[STATEMENT_LABEL_N]
         E --> F[Evaluate INCREMENT_LABEL]
         F --> B
     </div>
