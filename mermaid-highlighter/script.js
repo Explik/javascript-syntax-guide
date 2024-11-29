@@ -21,7 +21,7 @@ function findLabeledElement(element, label) {
     let deepestElement = null;
 
     function search(element, depth) {
-        if (element.innerText === label) {
+        if (element.innerText?.includes(label)) {
             if (!deepestElement || depth > deepestElement.depth) {
                 deepestElement = { element, depth };
             }
@@ -47,7 +47,7 @@ function replaceLabelWithElement(element, label, humanReadableLabel) {
         newLabelElement.style.fontWeight = 'bold';
         newLabelElement.style.display = 'inline-block';
 
-        labelElement.innerText = '';
-        labelElement.appendChild(newLabelElement);
+        const labelRegex = new RegExp(label, 'g');
+        labelElement.innerHTML = labelElement.innerHTML.replace(labelRegex, newLabelElement.outerHTML);
     }
 }
