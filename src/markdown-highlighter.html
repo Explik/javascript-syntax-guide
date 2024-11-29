@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown-it Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #0056b3;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow: auto;
+    }
+    code {
+      background: #e7e7e7;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Markdown-it Example</h1>
+
+  <pre class="markdown">
+# JS For loop
+- INIT_LABEL: This is the initialization step, executed once before the loop starts. Typically used to declare and initialize the loop counter.
+- CONDITION_LABEL: This is the condition evaluated before each iteration. If the condition is true, the loop continues; otherwise, it stops.
+- INCREMENT_LABEL: This is executed at the end of each iteration. It's often used to update the loop counter.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc: These represent the block of code executed during each iteration while the condition is met.
+
+  </pre>
+  <script src="script.js"></script>
+  <script>
+    const md = window.markdownit();
+    const preElement = document.querySelector('pre.markdown');
+
+    // Get the raw markdown content from the <pre> element
+    const markdownText = preElement.textContent;
+
+    // Render the markdown content to HTML
+    const htmlContent = md.render(markdownText);
+
+    // Replace the <pre> element with the rendered HTML
+    const renderedOutput = document.createElement('div');
+    renderedOutput.innerHTML = htmlContent;
+    preElement.replaceWith(renderedOutput);
+
+    // Highlight specific labels
+    highlightLabels([renderedOutput]);
+  </script>
+</body>
+</html>
