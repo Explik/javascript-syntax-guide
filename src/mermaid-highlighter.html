@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Loop Flowchart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
+</head>
+
+<body>
+    <h1>JavaScript For Loop Flowchart</h1>
+    <div class="mermaid">
+        flowchart TD
+        A1[Statement before loop] --> A
+        A[Evaluate INIT_LABEL] --> B{Evaluate CONDITION_LABEL}
+        B -->|false| G[Statement after Loop]
+        B -->|true| C[Evaluate STATEMENT_LABEL_1]
+        C --> D[Evaluate STATEMENT_LABEL_2]
+        D --> E[...]
+        E --> F[Evaluate INCREMENT_LABEL]
+        F --> B
+    </div>
+    <script src="script.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+        setTimeout(function () {
+            const mermaidElement = document.querySelectorAll('.mermaid');
+            highlightLabels(mermaidElement);
+        }, 100);
+    </script>
+</body>
+
+</html>

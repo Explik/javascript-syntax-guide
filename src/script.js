@@ -1,15 +1,12 @@
-mermaid.initialize({ startOnLoad: true });
-setTimeout(() => highlightLabels(), 100); 
 
-function highlightLabels() {
-    const mermaidElements = document.querySelectorAll('.mermaid');
+function highlightLabels(containerElement) {
     const INIT_LABEL = 'INIT_LABEL';
     const CONDITION_LABEL = 'CONDITION_LABEL';
     const STATEMENT_LABEL_1 = 'STATEMENT_LABEL_1';
     const STATEMENT_LABEL_2 = 'STATEMENT_LABEL_2';
     const INCREMENT_LABEL = 'INCREMENT_LABEL';
 
-    mermaidElements.forEach(element => {
+    containerElement.forEach(element => {
         const initLabelElement = findLabeledElement(element, INIT_LABEL);
         if (initLabelElement)
             replaceLabelWithElement(element, INIT_LABEL, { text: 'Init', backgroundColor: '#ff6666' });
