@@ -218,6 +218,7 @@ function functionName() {
 ## Control structure syntax
 
 ###  If statement 
+::: columns
 ```JS
 if (CONDITION_LABEL) 
     STATEMENT_LABEL;
@@ -229,13 +230,38 @@ if (CONDITION_LABEL) {
 }
 ```
 
+```Mermaid
+flowchart TD
+  A[Evaluate CONDITION_LABEL] -->|false| B[Statement after if]
+  A -->|true| C[Evaluate STATEMENT_LABEL_1]
+  C --> D[Evaluate STATEMENT_LABEL_2]
+  D --> E[Evaluate STATEMENT_LABEL_N]
+  E --> B
+```
+:::
+
+
 ### If/else statement 
+::: columns
 ```JS
 if (CONDITION_LABEL) 
     STATEMENT_LABEL_1;
 else 
     STATEMENT_LABEL_2;
+```
 
+```Mermaid
+flowchart TD
+  A0[Statement before if-else statement] --> A[Evaluate CONDITION_LABEL]
+  A -->|false| B[Evaluate STATEMENT_LABEL_2]
+  A -->|true| C[Evaluate STATEMENT_LABEL_1]
+  C --> D[Statement after if-else statement]
+  B --> D
+```
+:::
+
+::: columns
+```JS
 if (CONDITION_LABEL) {
     STATEMENT_LABEL_A1;
     STATEMENT_LABEL_A2;
@@ -246,6 +272,20 @@ if (CONDITION_LABEL) {
     STATEMENT_LABEL_BN;
 }
 ```
+  
+```Mermaid
+  flowchart TD
+    A[Statement before if-else statement] --> B[Evaluate CONDITION_LABEL]
+    B -->|true| C[Evaluate STATEMENT_LABEL_A1]
+    C --> D[Evaluate STATEMENT_LABEL_A2]
+    D --> E[STATEMENT_LABEL_AN]
+    E --> F[Statement after if-else statement]
+    B -->|false| G[Evaluate STATEMENT_LABEL_B1]
+    G --> H[Evaluate STATEMENT_LABEL_B2]
+    H --> I[STATEMENT_LABEL_BN]
+    I --> F
+```
+:::
 
 ### If/else if/else statement 
 ```JS
@@ -335,10 +375,13 @@ switch (VALUE_LABEL) {
 ```
 
 ### While loop 
+:::columns
 ```JS
+// Single statement while loop
 while (CONDITION_LABEL) 
     STATEMENT_LABEL;
 
+// Multi-statement while loop (RECOMMENDED)
 while (CONDITION_LABEL) {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
@@ -347,12 +390,29 @@ while (CONDITION_LABEL) {
 }
 ```
 
+```Mermaid
+flowchart TD
+  A1[Statement before loop] --> A2
+  A2 -->|false| B[Statement after Loop]
+  A2[Evaluate CONDITION_LABEL] --> A3[Evaluate STATEMENT_LABEL_1]
+  A3 --> A4[Evaluate STATEMENT_LABEL_2]
+  A4 --> A5[Evaluate STATEMENT_LABEL_N]
+  A5 --> A6[Evaluate INCREMENT_LABEL]
+  A6 --> A2
+  
+```
+:::
+
 ### Do-while loop 
+
+:::columns
 ```JS
+// Single statement do-while loop
 do 
     STATEMENT_LABEL;
 while (CONDITION_LABEL);
 
+// Multi-statement do-while loop (RECOMMENDED)
 do {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
@@ -361,14 +421,27 @@ do {
 } while (CONDITION_LABEL);
 ```
 
+```Mermaid
+flowchart TD
+  A1[Statement before loop] --> A2
+  A2[Evaluate STATEMENT_LABEL_1] --> A3[Evaluate STATEMENT_LABEL_2]
+  A3 --> A4[STATEMENT_LABEL_N]
+  A4 --> A5[Evaluate INCREMENT_LABEL]
+  A5 --> C{Evaluate CONDITION_LABEL}
+  C -->|false| D[Statement after Loop]
+  C -->|true| A2
+```
+:::
+
 ### For loop 
 :::columns
 ```JS
+// Single statement for loop
 for (INIT_LABEL; CONDITION_LABEL; INCREMENT_LABEL) 
     STATEMENT_LABEL;
 
+// Multi-statement for loop (RECOMMENDED)
 for (INIT_LABEL; CONDITION_LABEL; INCREMENT_LABEL) {
-
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
@@ -386,14 +459,13 @@ flowchart TD
         E --> F[Evaluate INCREMENT_LABEL]
         F --> B
 ```
-
+:::
 
 
 - INIT_LABEL: This is the initialization step, executed once before the loop starts. Typically used to declare and initialize the loop counter.
 - CONDITION_LABEL: This is the condition evaluated before each iteration. If the condition is true, the loop continues; otherwise, it stops.
 - INCREMENT_LABEL: This is executed at the end of each iteration. It's often used to update the loop counter.
 - STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc: These represent the block of code executed during each iteration while the condition is met.
-:::
 
 ### ForEach loop over array 
 ```JS
