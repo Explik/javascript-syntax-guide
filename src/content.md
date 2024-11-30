@@ -362,13 +362,6 @@ do {
 ```
 
 ### For loop 
-```Layout
-<div>
-  <div>#3</div>
-  <div>#4</div>
-</div>
-```
-
 :::columns
 ```JS
 for (INIT_LABEL; CONDITION_LABEL; INCREMENT_LABEL) 
@@ -393,13 +386,14 @@ flowchart TD
         E --> F[Evaluate INCREMENT_LABEL]
         F --> B
 ```
-:::
+
+
 
 - INIT_LABEL: This is the initialization step, executed once before the loop starts. Typically used to declare and initialize the loop counter.
 - CONDITION_LABEL: This is the condition evaluated before each iteration. If the condition is true, the loop continues; otherwise, it stops.
 - INCREMENT_LABEL: This is executed at the end of each iteration. It's often used to update the loop counter.
 - STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc: These represent the block of code executed during each iteration while the condition is met.
-
+:::
 
 ### ForEach loop over array 
 ```JS
