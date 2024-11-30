@@ -48,17 +48,27 @@ function convertToMarkdownElement(preElement) {
         html: true,
         highlight: function (str, lang) {
             switch (lang?.toLowerCase()) {
-                case 'js': 
+                case 'js':
                 case 'javascript':
                     return renderCode(str, 'javascript');
                 case 'mermaid':
                     return renderDiagram(str);
-                default: 
+                default:
                     console.log("Unsupported langauge " + lang)
             }
             return ''; // use external default escaping
         }
     });
+    md.use(markdownitContainer, 'columns', {
+        render(tokens, idx) {
+            if (tokens[idx].nesting === 1) {
+                return '<div class="columns">\n';
+            } else {
+                return '</div>\n';
+            }
+        },
+    });
+
     const markdownText = preElement.textContent;
     const htmlContent = md.render(markdownText);
 
@@ -79,20 +89,20 @@ function renderCode(str, lang) {
     return ''; // use external default escaping
 }
 
-function renderDiagram (code) {
+function renderDiagram(code) {
     try {
-      mermaid.parse(code);
-      return `<div class="mermaid">${code}</div>`;
+        mermaid.parse(code);
+        return `<div class="mermaid">${code}</div>`;
     } catch ({ str, hash }) {
-      return `<pre>${str}</pre>`;
+        return `<pre>${str}</pre>`;
     }
 }
 
 function highlightLabels(element) {
-    const labels = generateLabels(); 
+    const labels = generateLabels();
     const sortedLabelKeys = Object.keys(labels).sort((a, b) => b.length - a.length);
 
-    for(let label of sortedLabelKeys) {
+    for (let label of sortedLabelKeys) {
         const labelData = labels[label];
         const labeledElements = findLabeledElements(element, label);
 
@@ -142,11 +152,31 @@ function generateLabels() {
             text: '...',
             backgroundColor: '#00000000',
         },
-    }; 
+        ARGUMENT_LABEL_A1: {
+            text: 'Argument A1',
+        },
+        ARGUMENT_LABEL_A2: {
+            text: 'Argument A2',
+        },
+        ARGUMENT_LABEL_AN: {
+            text: '...',
+            backgroundColor: '#00000000',
+        },
+        ARGUMENT_LABEL_B1: {
+            text: 'Argument B1',
+        },
+        ARGUMENT_LABEL_B2: {
+            text: 'Argument B2',
+        },
+        ARGUMENT_LABEL_BN: {
+            text: '...',
+            backgroundColor: '#00000000',
+        },
+    };
     for (let l in valueLabels) {
         valueLabels[l].backgroundColor ||= '#ff6666';
     }
-    
+
     const statementLabels = {
         STATEMENT_LABEL: {
             text: 'Statement',
@@ -232,7 +262,7 @@ function generateLabels() {
             backgroundColor: '#00000000',
             fontWeight: undefined
         },
-    }; 
+    };
     for (let l in statementLabels) {
         statementLabels[l].backgroundColor ||= '#66ff66';
     }
@@ -247,7 +277,7 @@ function generateLabels() {
         CASE_LABEL_B: { text: 'Case B' },
         INIT_LABEL: { text: 'Init' },
         INCREMENT_LABEL: { text: 'Increment' },
-    }; 
+    };
     for (let l in controlStructureLabels) {
         controlStructureLabels[l].backgroundColor ||= '#aaaaff';
     }
@@ -257,7 +287,7 @@ function generateLabels() {
         PARAMETER_LABEL_1: { text: 'Parameter 1' },
         PARAMETER_LABEL_2: { text: 'Parameter 2' },
         PARAMETER_LABEL_N: { text: '...', backgroundColor: '#00000000', fontWeight: undefined },
-    }; 
+    };
     for (let l in functionLabels) {
         functionLabels[l].backgroundColor ||= '#ffcc00';
     }

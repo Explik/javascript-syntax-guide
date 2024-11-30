@@ -1,8 +1,8 @@
 # JavaScript syntax guide 
 
-## Forlæsningsoverblik 
+## Lecture-by-lecture breakdown 
 
-Forelæsning 1
+Lecture 1
 - `function f() { }` - Global function declaration 
 - `let variable` - Global/local variable declaration
 - `variable = new_value` - Reassignment of value
@@ -10,7 +10,7 @@ Forelæsning 1
 - `value = variable.memberMethod()` - Call to non-void object method 
 - `floatValue = parseFloat(stringValue)` - String to float conversion 
 
-Forelæsning 3
+Lecture 3
 - `if(condition) { }` - If statement 
 - `if(condition) { } else { }` - If/else statement 
 - `switch(variable) { case value: ...; break; }` - Switch statement incl. case  
@@ -18,7 +18,7 @@ Forelæsning 3
 - `a < b` - Simple boolean expressions 
 - `(a < b) && (b < c)` - Complex boolean expressions 
 
-Forelæsning 5 & 6
+Lecture 5 & 6
 - `while() { }` - While loop 
 - `do {} while();` - Do-while loop 
 - `for() { }` - For loop
@@ -33,11 +33,11 @@ Forelæsning 5 & 6
 - `array.forEach(callback)` - Array iteration
 - `alert(message)` - Display alert message
 
-Forlæsning 7
+Lecture 7
 - `return value` - Return value from function
 - `let value = f(x)` - Assign return value from function to variable
 
-Forlæsning 8 & 9
+Lecture 8 & 9
 - `class ClassName { }` - Class declaration
 - `constructor (parameter1, parameter2) { }` - Constructor declaration
 - `get PropertyName() { }` - Getter declaration
@@ -51,8 +51,11 @@ Forlæsning 8 & 9
 - `new Data().toLocaleDateString()` - Formatting date value
 - `stringValue.split(separator)` - Split string into array
 
-### Variable/function declaration 
-Variable declaration
+## Expression syntax
+TODO write section
+
+## Statement syntax
+### Variable declaration
 ```JS
 let variable;
 
@@ -61,7 +64,7 @@ let variable = INITIAL_VALUE_LABEL;
 const variable = VALUE_LABEL;
 ```
 
-Variable reassigment
+### Variable reassigment
 ```JS
 let variable; 
 variable = NEW_VALUE_LABEL;
@@ -70,52 +73,52 @@ let variable = INITIAL_VALUE_LABEL;
 variable = NEW_VALUE_LABEL;
 ```
 
-Object variable declaration 
+### Object variable declaration 
 ```JS
 let object = {};
 
 let object = { key1: VALUE_LABEL_1, key2: VALUE_LABEL_2, ELIPSIS_LABEL };
 ```
 
-Object member reading 
+### Object member reading 
 ```JS
 let object = { key1: VALUE_LABEL_1, key2: VALUE_LABEL_2, ELIPSIS_LABEL };
 let value = object.key1;
 ```
 
-Object member assignment 
+### Object member assignment 
 ```JS
 let object = { key1: VALUE_LABEL_1, key2: VALUE_LABEL_2, ELIPSIS_LABEL };
 object.key1 = NEW_VALUE_LABEL;
 ```
-F
-Object method call 
+
+### Object method call 
 ```JS
-let object = { ELIPSIS_LABEL };
+let object = ELIPSIS_LABEL;
 object.methodName1();
 object.methodName2(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2);
 ```
 
-Array variable declaration 
+### Array variable declaration 
 ```JS
 let array = [];
 
 let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
 ```
 
-Array element reading 
+### Array element reading 
 ```JS
 let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
 let value = array[INDEX_VALUE_LABEL];
 ```
 
-Array element assignment 
+### Array element assignment 
 ```JS
 let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
 array[INDEX_VALUE_LABEL] = NEW_VALUE_LABEL;
 ```
 
-Array extension 
+### Array extension 
 ```JS
 let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
 array.push(NEW_VALUE_LABEL);
@@ -124,7 +127,8 @@ let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
 array[array.length] = NEW_VALUE_LABEL;
 ```
 
-Function declaration 
+# Function syntax
+### Function declaration 
 ```JS
 function functionName() { 
     STATEMENT_LABEL_1;
@@ -139,7 +143,7 @@ function functionName(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
 }
 ```
 
-Void function calls 
+### Void function calls without return value
 ```JS
 functionName();
 functionName();
@@ -160,7 +164,7 @@ function functionName(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
 };
 ```
 
-Non-void function calls 
+### Function calls with return value
 ```JS
 let value1 = functionName();
 let value2 = functionName();
@@ -183,7 +187,7 @@ function functionName(parameter1, parameter2, parametern) {
 };
 ```
 
-Function call with early return  
+### Function call with early return 
 ```JS
 functionName(); 
 
@@ -197,7 +201,7 @@ function functionName() {
 }
 ```
 
-Function call with early return and value 
+### Function call with early return and value 
 ```JS
 let value = functionName();
 
@@ -211,8 +215,9 @@ function functionName() {
 }
 ```
 
-### Control structures
-If statement 
+## Control structure syntax
+
+###  If statement 
 ```JS
 if (CONDITION_LABEL) 
     STATEMENT_LABEL;
@@ -224,7 +229,7 @@ if (CONDITION_LABEL) {
 }
 ```
 
-If/else statement 
+### If/else statement 
 ```JS
 if (CONDITION_LABEL) 
     STATEMENT_LABEL_1;
@@ -242,7 +247,7 @@ if (CONDITION_LABEL) {
 }
 ```
 
-If/else if/else statement 
+### If/else if/else statement 
 ```JS
 if (CONDITION_LABEL_A) 
     STATEMENT_LABEL_A;
@@ -266,7 +271,7 @@ if (CONDITION_LABEL_A) {
 }
 ```
 
-Nested if-else statements 
+### Nested if-else statements 
 ```JS
 if (CONDITION_LABEL_A) {
     STATEMENT_LABEL_A1;
@@ -295,7 +300,7 @@ if (CONDITION_LABEL_A) {
 }
 ```
 
-Switch statement 
+### Switch statement 
 ```JS
 switch (VALUE_LABEL) {
     case CASE_LABEL_A:
@@ -329,7 +334,7 @@ switch (VALUE_LABEL) {
 }
 ```
 
-While loop 
+### While loop 
 ```JS
 while (CONDITION_LABEL) 
     STATEMENT_LABEL;
@@ -342,7 +347,7 @@ while (CONDITION_LABEL) {
 }
 ```
 
-Do-while loop 
+### Do-while loop 
 ```JS
 do 
     STATEMENT_LABEL;
@@ -356,12 +361,21 @@ do {
 } while (CONDITION_LABEL);
 ```
 
-For loop 
+### For loop 
+```Layout
+<div>
+  <div>#3</div>
+  <div>#4</div>
+</div>
+```
+
+:::columns
 ```JS
 for (INIT_LABEL; CONDITION_LABEL; INCREMENT_LABEL) 
     STATEMENT_LABEL;
 
 for (INIT_LABEL; CONDITION_LABEL; INCREMENT_LABEL) {
+
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
@@ -379,6 +393,7 @@ flowchart TD
         E --> F[Evaluate INCREMENT_LABEL]
         F --> B
 ```
+:::
 
 - INIT_LABEL: This is the initialization step, executed once before the loop starts. Typically used to declare and initialize the loop counter.
 - CONDITION_LABEL: This is the condition evaluated before each iteration. If the condition is true, the loop continues; otherwise, it stops.
@@ -386,7 +401,7 @@ flowchart TD
 - STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc: These represent the block of code executed during each iteration while the condition is met.
 
 
-ForEach loop over array 
+### ForEach loop over array 
 ```JS
 let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
 array.forEach(function(element) {
@@ -396,8 +411,8 @@ array.forEach(function(element) {
 });
 ```
 
-### Class declaration
-Class declaration with constructor 
+## Class-based syntax
+### Class declaration with constructor 
 ```JS
 let object = new ClassName();
 class ClassName {
@@ -418,7 +433,7 @@ class ClassName {
 }
 ```
 
-Class declaration with property 
+### Class declaration with property 
 ```JS
 let obj = new ClassName();
 let value = obj.propertyName;
@@ -431,7 +446,7 @@ class ClassName {
 }
 ```
 
-Class declaration with get/set property
+### Class declaration with get/set property
 ```JS
 let object = new ClassName();
 let value = object.propertyName;
@@ -455,7 +470,7 @@ class ClassName {
 }
 ```
 
-Class declaration with void methods 
+### Class declaration with methods without return values
 ```JS
 let object = new ClassName();
 object.methodName1();
@@ -475,7 +490,7 @@ class ClassName {
 }
 ```
 
-Class declaration with non-void methods 
+### Class declaration with methods with return values
 ```JS
 let object = new ClassName();
 let value1 = object.methodName1();

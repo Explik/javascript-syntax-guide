@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/atom-one-light.min.css">  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it-container@4.0.0/dist/markdown-it-container.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.4.0/mermaid.min.js"></script>
@@ -15,7 +16,6 @@
       font-family: Arial, sans-serif;
       line-height: 1.6;
       margin: 20px;
-      background-color: #f4f4f4;
       color: #333;
     }
     h1, h2, h3 {
@@ -30,11 +30,24 @@
     code {
       border-radius: 3px;
     }
+
+    .columns {
+      display: flex;
+      gap: 20px;
+    }
+
+    .columns pre {
+      flex: 1;
+    }
+
+    .mermaid svg {
+      max-height: 600px;
+    }
   </style>
 </head>
 <body>
   <pre class="markdown"></pre>
-  
+
   <script src="script.js"></script>
   <script>
     // Initialize the script asynchronously
