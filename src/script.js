@@ -123,6 +123,9 @@ function generateLabels() {
         VALUE_LABEL_2: {
             text: 'Value 2',
         },
+        VALUE_LABEL_3: {
+            text: 'Value 3',
+        },
         VALUE_LABEL_N: {
             text: '...',
             backgroundColor: '#00000000',

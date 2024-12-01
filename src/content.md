@@ -461,19 +461,69 @@ flowchart TD
 ```
 :::
 
-
+Breakdown: 
 - INIT_LABEL: This is the initialization step, executed once before the loop starts. Typically used to declare and initialize the loop counter.
 - CONDITION_LABEL: This is the condition evaluated before each iteration. If the condition is true, the loop continues; otherwise, it stops.
 - INCREMENT_LABEL: This is executed at the end of each iteration. It's often used to update the loop counter.
 - STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc: These represent the block of code executed during each iteration while the condition is met.
 
+Examples: 
+```JS
+// INIT_LABEL is let i = 0
+// CONDITION_LABEL is i < 10
+// INCREMENT_LABEL is  i++
+// STATEMENT_LABEL_1 is console.log(i)
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+// INIT_LABEL is let i = 0
+// CONDITION_LABEL is i < array.length
+// INCREMENT_LABEL is i++
+// STATEMENT_LABEL_1 is const element = array[i];
+// STATEMENT_LABEL_2 is console.log(element);
+const array = [1, 2, 3, 4, 5];
+for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    console.log(element);
+}
+```
+
 ### ForEach loop over array 
+:::columns
 ```JS
 let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
 array.forEach(function(element) {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
+});
+```
+
+```Mermaid
+flowchart TD
+  A[Statement before loop] --> A1{Loop over elements}
+  A1 --> |No more elements| B[End of loop]
+  A1 --> A2[Evaluate STATEMENT_LABEL_1]
+  A2 --> A3[Evaluate STATEMENT_LABEL_2]
+  A3 --> A4[STATEMENT_LABEL_N]
+  A4 --> A1
+```
+:::
+
+Breakdown:
+- VALUE_LABEL_1, VALUE_LABEL_2, etc.: These are the elements of the array.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These represent the block of code executed during each iteration while the condition is met.
+
+Example: 
+```JS
+// VALUE_LABEL_1 is 5
+// VALUE_LABEL_2 is 6
+// VALUE_LABEL_3 is 7
+// STATEMENT_LABEL_1 is console.log(element);
+const array = [5, 6, 7];
+array.forEach(function(element) {
+    console.log(element);
 });
 ```
 
