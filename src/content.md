@@ -51,6 +51,9 @@ Lecture 8 & 9
 - `new Data().toLocaleDateString()` - Formatting date value
 - `stringValue.split(separator)` - Split string into array
 
+## Notation 
+TODO write section
+
 ## Expression syntax
 TODO write section
 
