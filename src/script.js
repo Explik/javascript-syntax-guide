@@ -186,7 +186,7 @@ function generateLabels() {
         },
     };
     for (let l in valueLabels) {
-        valueLabels[l].backgroundColor ||= '#ff6666';
+        valueLabels[l].backgroundColor ||= randomizeColor('#ff6666');
     }
 
     const statementLabels = {
@@ -276,7 +276,7 @@ function generateLabels() {
         },
     };
     for (let l in statementLabels) {
-        statementLabels[l].backgroundColor ||= '#66ff66';
+        statementLabels[l].backgroundColor ||= randomizeColor('#66ff66');
     }
 
     const controlStructureLabels = {
@@ -292,7 +292,7 @@ function generateLabels() {
         INCREMENT_LABEL: { text: 'Increment' },
     };
     for (let l in controlStructureLabels) {
-        controlStructureLabels[l].backgroundColor ||= '#aaaaff';
+        controlStructureLabels[l].backgroundColor ||= randomizeColor('#aaaaff');
     }
 
     const functionLabels = {
@@ -305,7 +305,7 @@ function generateLabels() {
         PARAMETER_LABEL_N: { text: '...', backgroundColor: '#00000000', fontWeight: undefined },
     };
     for (let l in functionLabels) {
-        functionLabels[l].backgroundColor ||= '#ffcc00';
+        functionLabels[l].backgroundColor ||= randomizeColor('#ffcc00');
     }
 
     const objectLabels = {
@@ -322,7 +322,7 @@ function generateLabels() {
         METHOD_NAME_LABEL_N: { text: '...', backgroundColor: '#00000000', fontWeight: undefined },
     }
     for (let l in objectLabels) {
-        objectLabels[l].backgroundColor ||= '#ffcc00';
+        objectLabels[l].backgroundColor ||= randomizeColor('#ffcc00');
     }
 
     const specialLabels = {
@@ -334,6 +334,33 @@ function generateLabels() {
     }
 
     return { ...valueLabels, ...statementLabels, ...controlStructureLabels, ...functionLabels, ...objectLabels, ...specialLabels }
+}
+
+function randomizeColor(hex) {
+    // Convert hex to RGB
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+
+    // Randomly decide to lighten or darken
+    const lighten = Math.random() > 0.5;
+
+    // Randomly decide the amount to alter
+    const amount = Math.floor(Math.random() * 30) + 10; // Between 10 and 40
+
+    if (lighten) {
+        r = Math.min(255, r + amount);
+        g = Math.min(255, g + amount);
+        b = Math.min(255, b + amount);
+    } else {
+        r = Math.max(0, r - amount);
+        g = Math.max(0, g - amount);
+        b = Math.max(0, b - amount);
+    }
+
+    // Convert RGB back to hex
+    const newHex = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+    return newHex;
 }
 
 // Finds the deepest elements with the given label (text)
