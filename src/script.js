@@ -117,6 +117,9 @@ function generateLabels() {
         VALUE_LABEL: {
             text: 'Value',
         },
+        VALUE_LABEL_0: {
+            text: 'Value 0',
+        },
         VALUE_LABEL_1: {
             text: 'Value 1',
         },
@@ -286,6 +289,9 @@ function generateLabels() {
     }
 
     const functionLabels = {
+        FUNCTION_NAME_LABEL: { text: 'Function name' },
+        FUNCTION_NAME_LABEL_1: { text: 'Function 1' },
+        FUNCTION_NAME_LABEL_2: { text: 'Function 2' },
         PARAMETER_LABEL: { text: 'Parameter' },
         PARAMETER_LABEL_1: { text: 'Parameter 1' },
         PARAMETER_LABEL_2: { text: 'Parameter 2' },
@@ -293,6 +299,20 @@ function generateLabels() {
     };
     for (let l in functionLabels) {
         functionLabels[l].backgroundColor ||= '#ffcc00';
+    }
+
+    const objectLabels = {
+        PROPERTY_NAME_LABEL: { text: 'Property name' },
+        PROPERTY_NAME_LABEL_1: { text: 'Property 1' },
+        PROPERTY_NAME_LABEL_2: { text: 'Property 2' },
+        PROPERTY_NAME_LABEL_N: { text: '...', backgroundColor: '#00000000', fontWeight: undefined },
+        METHOD_NAME_LABEL: { text: 'Method' },
+        METHOD_NAME_LABEL_1: { text: 'Method 1' },
+        METHOD_NAME_LABEL_2: { text: 'Method 2' },
+        METHOD_NAME_LABEL_N: { text: '...', backgroundColor: '#00000000', fontWeight: undefined },
+    }
+    for (let l in objectLabels) {
+        objectLabels[l].backgroundColor ||= '#ffcc00';
     }
 
     const specialLabels = {
@@ -303,7 +323,7 @@ function generateLabels() {
         }
     }
 
-    return { ...valueLabels, ...statementLabels, ...controlStructureLabels, ...functionLabels, ...specialLabels }
+    return { ...valueLabels, ...statementLabels, ...controlStructureLabels, ...functionLabels, ...objectLabels, ...specialLabels }
 }
 
 // Finds the deepest elements with the given label (text)

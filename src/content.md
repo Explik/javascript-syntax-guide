@@ -54,120 +54,444 @@ Lecture 8 & 9
 ## Notation 
 TODO write section
 
-## Expression syntax
-TODO write section
-
-## Statement syntax
+## Expression/statement syntax
 ### Variable declaration
 ```JS
+// Unitialized variable declaration
 let variable;
 
+// Initialized variable declaration
 let variable = INITIAL_VALUE_LABEL;
 
-const variable = VALUE_LABEL;
+// Multiple variable declaration
+const variable = INITIAL_VALUE_LABEL;
+```
+
+Breakdown: 
+- INITIAL_VALUE_LABEL: This is the initial value assigned to the variable. For non-const variables, the value can be reassigned later. For const variables, the value cannot be reassigned ever.
+
+Examples: 
+```JS
+// No initial value is given
+let variable;
+console.log("variable"); // prints undefined (or nothing)
+```
+
+```JS	
+// INITIAL_VALUE_LABEL is 5 * 5 + 3
+let variable = 5 * 5 + 3;
+console.log(variable); // prints "28"
+```
+
+```JS
+// INITIAL_VALUE_LABEL is 3 * (3 + 2)
+const variable = 3 * (3 + 2);
+console.log(variable); // prints "15"
 ```
 
 ### Variable reassigment
 ```JS
+// Variable reassignment of uninitialized variable
 let variable; 
 variable = NEW_VALUE_LABEL;
 
+// Variable reassignment of initialized variable
 let variable = INITIAL_VALUE_LABEL; 
 variable = NEW_VALUE_LABEL;
 ```
 
-### Object variable declaration 
-```JS
-let object = {};
+Breakdown:
+- INITIAL_VALUE_LABEL: This is the initial value assigned to the variable.
+- NEW_VALUE_LABEL: This is the new value assigned to the variable.
 
-let object = { key1: VALUE_LABEL_1, key2: VALUE_LABEL_2, ELIPSIS_LABEL };
+Examples: 
+```JS
+// No initial value is given
+let unitializedVariable;
+console.log(unitializedVariable); // prints undefined (or nothing)
+
+// NEW_VALUE_LABEL is 5 * 4
+unitializedVariable = 5 * 4;
+console.log(unitializedVariable); // prints "20"
 ```
 
-### Object member reading 
 ```JS
-let object = { key1: VALUE_LABEL_1, key2: VALUE_LABEL_2, ELIPSIS_LABEL };
-let value = object.key1;
+// INITIAL_VALUE_LABEL is "hello world" 
+let initializedVariable = "hello world";
+console.log(initializedVariable); // prints "hello world"
+
+// NEW_VALUE_LABEL is "hello world again"
+initializedVariable = "hello world again";
+console.log(initializedVariable); // prints "hello world again"
 ```
 
-### Object member assignment 
+### Object property reading 
 ```JS
-let object = { key1: VALUE_LABEL_1, key2: VALUE_LABEL_2, ELIPSIS_LABEL };
-object.key1 = NEW_VALUE_LABEL;
+let object = ELIPSIS_LABEL;
+let value = object.PROPERTY_NAME_LABEL;
+```
+
+Breakdown:
+- PROPERTY_NAME_LABEL: This is the name of the object property whose value is being read.
+
+Examples: 
+```JS
+let error = createError(); 
+
+// PROPERTY_NAME_LABEL is type
+let errorType = error.type;
+
+// PROPERTY_NAME_LABEL is message
+let errorMessage = object.message;
+
+console.log(errorType);
+console.log(errorMessage);
+```
+
+```JS
+let error = createError();
+
+// PROPERTY_NAME_LABEL is type
+console.log(error.type);
+
+// PROPERTY_NAME_LABEL is message
+console.log(error.message);
+```
+
+### Object property assignment 
+```JS
+let object = ELIPSIS_LABEL;
+object.PROPERTY_NAME_LABEL = NEW_VALUE_LABEL;
+```
+
+Breakdown: 
+- PROPERTY_NAME_LABEL: This is the name of the object property whose value is being assigned.
+- NEW_VALUE_LABEL: This is the new value assigned to the object property.
+
+Examples: 
+```JS
+let error = createError();
+
+// PROPERTY_NAME_LABEL is type
+// NEW_VALUE_LABEL is "error"
+error.type = "Unidentied error";
+
+// PROPERTY_NAME_LABEL is message
+// NEW_VALUE_LABEL is "An error occurred"
+error.message = "An error occurred";
 ```
 
 ### Object method call 
 ```JS
 let object = ELIPSIS_LABEL;
-object.methodName1();
-object.methodName2(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2);
+object.METHOD_NAME_LABEL_1();
+object.METHOD_NAME_LABEL_2(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
 ```
+
+Breakdown:
+- METHOD_NAME_LABEL_1, METHOD_NAME_LABEL_2: These are the names of the object functions/methods being called.
+- ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, etc.: These are the arguments passed to the method.
+
+Examples: 
+```JS
+let input = createInput(); 
+
+// The argumentless call "input.value()" returns the current value of the input element
+// METHOD_NAME_LABEL_1 is value
+let inputValue = input.value(); 
+
+// The call "input.value('new value')" sets the value of the input element to 'new value'
+// METHOD_NAME_LABEL_2 is value
+// ARGUMENT_LABEL_1 is 'new value'
+input.value('new value');
+```
+
+See function syntax section for more details.
 
 ### Array variable declaration 
 ```JS
+// Empty array declaration
 let array = [];
 
-let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
+// Array declaration with elements
+let array = [VALUE_LABEL_0, VALUE_LABEL_1, VALUE_LABEL_N];
+```
+
+Breakdown:
+- VALUE_LABEL_0, VALUE_LABEL_1, etc.: These are the elements of the array.
+
+Examples: 
+```JS
+// Empty array declaration
+let emptyArray = [];
+```
+
+```JS
+// Array declaration with elements
+// VALUE_LABEL_0 is 1, VALUE_LABEL_1 is 2, VALUE_LABEL_2 is 3
+let array = [1, 2, 3];
 ```
 
 ### Array element reading 
 ```JS
-let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
+let array = [VALUE_LABEL_0, VALUE_LABEL_1, VALUE_LABEL_N];
 let value = array[INDEX_VALUE_LABEL];
+```
+
+Breakdown:
+- VALUE_LABEL_0, VALUE_LABEL_1, etc.: These are the elements of the array.
+- INDEX_VALUE_LABEL: This is the index of the array element whose value is being read.
+
+Examples: 
+```JS
+let emptyArray = [];
+
+// INDEX_VALUE_LABEL is 0
+let firstElement = emptyArray[0];
+
+console.log(firstElement); // prints undefined (or nothing)
+```
+
+```JS
+// VALUE_LABEL_0 is 1, VALUE_LABEL_1 is 2, VALUE_LABEL_2 is 3
+let array = [1, 2, 3];
+
+// INDEX_VALUE_LABEL is 1
+let secondElement = array[1];
+
+console.log(secondElement); // prints "2"
 ```
 
 ### Array element assignment 
 ```JS
-let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
+let array = [VALUE_LABEL_0, VALUE_LABEL_1, VALUE_LABEL_N];
 array[INDEX_VALUE_LABEL] = NEW_VALUE_LABEL;
+```
+
+Breakdown: 
+- VALUE_LABEL_0, VALUE_LABEL_1, etc.: These are the elements of the array.
+- INDEX_VALUE_LABEL: This is the index of the array element whose value is being assigned.
+- NEW_VALUE_LABEL: This is the new value assigned to the array element.
+
+Examples: 
+```JS
+// VALUE_LABEL_0 is 1, VALUE_LABEL_1 is 2, VALUE_LABEL_2 is 3
+let array = [1, 2, 3];
+console.log(array); // prints "[1, 2, 3]"
+
+// INDEX_VALUE_LABEL is 0
+// NEW_VALUE_LABEL is 5
+array[0] = 5;
+
+console.log(array); // prints "[5, 2, 3]"
 ```
 
 ### Array extension 
 ```JS
-let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
+// Adding a new element to end of array with array.push(...)
+let array = [VALUE_LABEL_0, VALUE_LABEL_1, VALUE_LABEL_N];
 array.push(NEW_VALUE_LABEL);
 
-let array = [VALUE_LABEL_1, VALUE_LABEL_2, VALUE_LABEL_N];
+// Adding a new element to the end of the array with array[array.length] = ...
+let array = [VALUE_LABEL_0, VALUE_LABEL_1, VALUE_LABEL_N];
 array[array.length] = NEW_VALUE_LABEL;
+```
+
+Breakdown:
+- VALUE_LABEL_0, VALUE_LABEL_1, etc.: These are the elements of the array.
+- NEW_VALUE_LABEL: This is the new value added to the array.
+
+Examples: 
+```JS
+// VALUE_LABEL_0 is 1, VALUE_LABEL_1 is 2, VALUE_LABEL_2 is 3
+let array = [1, 2, 3];
+
+// NEW_VALUE_LABEL is 4
+array.push(4);
+
+console.log(array); // prints "[1, 2, 3, 4]"
+```
+
+```JS
+// VALUE_LABEL_0 is 1, VALUE_LABEL_1 is 2, VALUE_LABEL_2 is 3
+let array = [1, 2, 3];
+
+// NEW_VALUE_LABEL is 4
+array[array.length] = 4;
+
+console.log(array); // prints "[1, 2, 3, 4]"
 ```
 
 # Function syntax
 ### Function declaration 
 ```JS
-function functionName() { 
+function FUNCTION_NAME_LABEL() { 
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
 }
 
-function functionName(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) { 
+function FUNCTION_NAME_LABEL(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) { 
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
 }
 ```
 
-### Void function calls without return value
-```JS
-functionName();
-functionName();
+Breakdown: 
+- FUNCTION_NAME_LABEL: This is the name of the function, which will be used to call the function.
+- PARAMETER_LABEL_1, PARAMETER_LABEL_2, etc.: These are the named values passed to the function, which can be used inside the function.
 
-function functionName() {
+Examples: 
+```JS
+// FUNCTION_NAME_LABEL is greet
+// STATEMENT_LABEL_1 is console.log("Hello, world!");
+function greet() {
+    console.log("Hello, world!");
+}
+```
+
+```JS
+// FUNCTION_NAME_LABEL is greet
+// PARAMETER_LABEL_1 is name
+// STATEMENT_LABEL_1 is console.log("Hello, " + name + "!");
+function greet(name) {
+    console.log("Hello, " + name + "!");
+}
+```
+
+### Function calls without parameters or return value
+:::columns
+```JS
+FUNCTION_NAME_LABEL();
+ELIPSIS_LABEL
+FUNCTION_NAME_LABEL();
+
+function FUNCTION_NAME_LABEL() {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
 }
+```
 
-functionName(ARGUMENT_LABEL_A1, ARGUMENT_LABEL_A2, ARGUMENT_LABEL_AN);
-functionName(ARGUMENT_LABEL_B1, ARGUMENT_LABEL_B2, ARGUMENT_LABEL_BN);
+```Mermaid
+flowchart TD
+  A[Statement before first function call] ---> C
+  C[Evaluate STATEMENT_LABEL_1] --> D
+  D[Evaluate STATEMENT_LABEL_2] --> E
+  E[Evaluate STATEMENT_LABEL_N] --> F
+  F[ELIPSIS_LABEL] --> I
+  I[Evaluate STATEMENT_LABEL_1] --> J
+  J[Evaluate STATEMENT_LABEL_2] --> K
+  K[Evaluate STATEMENT_LABEL_N] --> L
+  L[Statement after second function call]
 
-function functionName(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
+  subgraph "first function call"
+    C
+    D
+    E
+  end
+
+  subgraph "second function call"
+    I
+    J
+    K
+  end
+```
+:::
+
+Breakdown:
+- FUNCTION_NAME_LABEL: This is the name of the function being called.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These are the statements executed when the function is called.
+
+Examples: 
+```JS
+// Call the greet function twice
+// FUNCTION_NAME_LABEL is greet
+greet(); // Prints the first "Hello, world!"
+greet(); // Prints the second "Hello, world!"
+
+// Declare the greet function
+// FUNCTION_NAME_LABEL is greet
+// STATEMENT_LABEL_1 is console.log("Hello, world!");
+function greet() {
+    console.log("Hello, world!");
+}
+```
+
+### Function calls with parameters but without return value
+:::columns
+```JS
+FUNCTION_NAME_LABEL(ARGUMENT_LABEL_A1, ARGUMENT_LABEL_A2, ARGUMENT_LABEL_AN);
+ELIPSIS_LABEL
+FUNCTION_NAME_LABEL(ARGUMENT_LABEL_B1, ARGUMENT_LABEL_B2, ARGUMENT_LABEL_BN);
+
+function FUNCTION_NAME_LABEL(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
 };
 ```
 
-### Function calls with return value
+```Mermaid
+flowchart TD
+  A[Statement before first function call] ---> C0
+  C0[PARAMETER_LABEL_1 = ARGUMENT_LABEL_A1\n PARAMETER_LABEL_2 = ARGUMENT_LABEL_A2\n ELIPSIS_LABEL] --> C
+  C[Evaluate STATEMENT_LABEL_1] --> D
+  D[Evaluate STATEMENT_LABEL_2] --> E
+  E[Evaluate STATEMENT_LABEL_N] --> F
+  F[ELIPSIS_LABEL] --> I0
+  I0[PARAMETER_LABEL_1 = ARGUMENT_LABEL_B1\n PARAMETER_LABEL_2 = ARGUMENT_LABEL_B2\n ELIPSIS_LABEL] --> I
+  I[Evaluate STATEMENT_LABEL_1] --> J
+  J[Evaluate STATEMENT_LABEL_2] --> K
+  K[Evaluate STATEMENT_LABEL_N] --> L
+  L[Statement after second function call]
+
+  subgraph "first function call"
+    C0
+    C
+    D
+    E
+  end
+
+  subgraph "second function call"
+    I0
+    I
+    J
+    K
+  end
+```
+:::
+
+Breakdown:
+- FUNCTION_NAME_LABEL: This is the name of the function being called.
+- ARGUMENT_LABEL_A1, ARGUMENT_LABEL_A2, etc.: These are the values passed to the function on the first function call.
+- ARGUMENT_LABEL_B1, ARGUMENT_LABEL_B2, etc.: These are the values passed to the function on the second function call.
+- PARAMETER_LABEL_1, PARAMETER_LABEL_2, etc.: These are the names of the values passed to the function, which can be used inside the function. The names remain the same, but the value might change for each function call.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These are the statements executed when the function is called.
+
+Examples: 
+```JS
+// Call the greet function
+// FUNCTION_NAME_LABEL is greet
+// ARGUMENT_LABEL_A1 is "Anna"
+greet("Anna"); // Prints the first "Hello, Anna!"
+
+// Call the greet function again
+// FUNCTION_NAME_LABEL is greet
+// ARGUMENT_LABEL_B1 is "Bob"
+greet("Bob"); // Prints the second "Hello, Bob!"
+
+// Declare the greet function
+// FUNCTION_NAME_LABEL is greet
+// PARAMETER_LABEL_1 is name
+// STATEMENT_LABEL_1 is console.log("Hello, " + name + "!");
+function greet(name) {
+    console.log("Hello, " + name + "!");
+}
+```
+
+### Function calls with parameters and return value
 ```JS
 let value1 = functionName();
 let value2 = functionName();
