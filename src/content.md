@@ -778,7 +778,6 @@ Breakdown:
 
 Example: 
 ```JS
-
 // Assign the result of the multiply function to value1
 // FUNCTION_NAME_LABEL is multiply
 // ARGUMENT_LABEL_A1 is 5
@@ -811,12 +810,14 @@ function multiply(a, b) {
 
 ## Control structure syntax
 
-###  If statement 
+###  If statement
 ::: columns
 ```JS
+// Single-statement if statement
 if (CONDITION_LABEL) 
     STATEMENT_LABEL;
 
+// Multi-statement if statement (RECOMMENDED)
 if (CONDITION_LABEL) {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
@@ -834,8 +835,31 @@ flowchart TD
 ```
 :::
 
+Breakdown:
+- CONDITION_LABEL: This is the condition evaluated by the if statement. If the condition is true, the statements inside the if block are executed; otherwise, they are skipped.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These are the statements executed when the condition is true.
 
-### If/else statement 
+Examples: 
+```JS
+// CONDITION_LABEL is i === 0
+// STATEMENT_LABEL is console.log("i is 0");
+if (i === 0)
+  console.log("i is 0");
+console.log("Unrelated statement");
+```
+
+```JS
+// CONDITION_LABEL is i === 0
+// STATEMENT_LABEL_1 is console.log("First statement inside if block");
+// STATEMENT_LABEL_2 is console.log("Second statement inside if block");
+if (i === 0) {
+  console.log("First statement inside if block");
+  console.log("Second statement inside if block");
+}
+console.log("Unrelated statement");
+```
+
+### If/else statement (single-statement)
 ::: columns
 ```JS
 if (CONDITION_LABEL) 
@@ -854,6 +878,23 @@ flowchart TD
 ```
 :::
 
+Breakdown: 
+- CONDITION_LABEL: This is the condition evaluated by the if statement. If the condition is true, the statements inside the if block are executed; otherwise, the statements inside the else block are executed
+- STATEMENT_LABEL_1: This is the statement executed when the condition is true.
+- STATEMENT_LABEL_2: This is the statement executed when the condition is false.
+
+Examples: 
+```JS
+// CONDITION_LABEL is i === 0
+// STATEMENT_LABEL_1 is console.log("i is 0");
+// STATEMENT_LABEL_2 is console.log("i is not 0");
+if (i === 0) 
+  console.log("Statement nested in if statement");
+else 
+  console.log("Statement nested in else statement");
+```
+
+### If/else statement (multi-statement)
 ::: columns
 ```JS
 if (CONDITION_LABEL) {
@@ -866,7 +907,8 @@ if (CONDITION_LABEL) {
     STATEMENT_LABEL_BN;
 }
 ```
-  
+
+```JS
 ```Mermaid
   flowchart TD
     A[Statement before if-else statement] --> B[Evaluate CONDITION_LABEL]
@@ -881,7 +923,24 @@ if (CONDITION_LABEL) {
 ```
 :::
 
-### If/else if/else statement 
+Breakdown: 
+- CONDITION_LABEL: This is the condition evaluated by the if statement. If the condition is true, the statements inside the if block are executed; otherwise, the statements inside the else block are executed
+- STATEMENT_LABEL_A1, STATEMENT_LABEL_A2, etc.: These are the statements executed when the condition is true.
+- STATEMENT_LABEL_B1, STATEMENT_LABEL_B2, etc.: These are the statements executed when the condition is false.
+
+Examples: 
+```JS
+if (i === 0) {
+  console.log("First statement inside if block");
+  console.log("Second statement inside if block");
+} else {
+  console.log("First statement inside else block");
+  console.log("Second statement inside else block");
+}
+```
+
+### If/else if/else (single statement)
+:::column
 ```JS
 if (CONDITION_LABEL_A) 
     STATEMENT_LABEL_A;
@@ -889,7 +948,43 @@ else if (CONDITION_LABEL_B)
     STATEMENT_LABEL_B;
 else 
     STATEMENT_LABEL_C;
+```
 
+```Mermaid
+flowchart TD
+  A0[Statement before if-else chain] --> A[Evaluate CONDITION_LABEL_A]
+  A -->|true| B[Evaluate STATEMENT_LABEL_A]
+  B --> C[Statement after if-else chain]
+  A -->|false| D[Evaluate CONDITION_LABEL_B]
+  D -->|true| E[Evaluate STATEMENT_LABEL_B]
+  E --> C
+  D -->|false| F[Evaluate STATEMENT_LABEL_C]
+  F --> C
+```
+:::
+
+Breakdown:
+- CONDITION_LABEL_A, CONDITION_LABEL_B: These are the conditions evaluated by the if-else if statements. If the condition is true, the corresponding statement is executed; otherwise, the next condition is evaluated.
+- STATEMENT_LABEL_A, STATEMENT_LABEL_B, STATEMENT_LABEL_C: These are the statements executed when the corresponding condition is true.
+
+Examples: 
+```JS
+// CONDITION_LABEL_A is i === 0
+// STATEMENT_LABEL_A is console.log("Statement inside if block");
+// CONDITION_LABEL_B is i === 1
+// STATEMENT_LABEL_B is console.log("Statement inside else if block");
+// STATEMENT_LABEL_C is console.log("Statement inside else block");
+if (i === 0) 
+  console.log("Statement inside if block");
+else if (i === 1) 
+  console.log("Statement inside else if block");
+else 
+  console.log("Statement inside else block");
+```
+
+### If/else if/else (multi-statement)
+:::columns
+```JS
 if (CONDITION_LABEL_A) {
     STATEMENT_LABEL_A1;
     STATEMENT_LABEL_A2;
@@ -905,7 +1000,49 @@ if (CONDITION_LABEL_A) {
 }
 ```
 
+```Mermaid
+flowchart TD
+  A0[Statement before if-else chain] --> A[Evaluate CONDITION_LABEL_A]
+  A -->|true| B[Evaluate STATEMENT_LABEL_A1]
+  B --> C[Evaluate STATEMENT_LABEL_A2]
+  C --> D[Evaluate STATEMENT_LABEL_AN]
+  D --> E[Statement after if-else chain]
+  A -->|false| F[Evaluate CONDITION_LABEL_B]
+  F -->|true| G[Evaluate STATEMENT_LABEL_B1]
+  G --> H[Evaluate STATEMENT_LABEL_B2]
+  H --> I[Evaluate STATEMENT_LABEL_BN]
+  I --> E
+  F -->|false| J[Evaluate STATEMENT_LABEL_C1]
+  J --> K[Evaluate STATEMENT_LABEL_C2]
+  K --> L[Evaluate STATEMENT_LABEL_CN]
+  L --> E
+```
+:::
+
+Examples: 
+```JS
+// CONDITION_LABEL_A is i === 0
+// STATEMENT_LABEL_A1 is console.log("First statement inside if block");
+// STATEMENT_LABEL_A2 is console.log("Second statement inside if block");
+// CONDITION_LABEL_B is i === 1
+// STATEMENT_LABEL_B1 is console.log("First statement inside else if block");
+// STATEMENT_LABEL_B2 is console.log("Second statement inside else if block");
+// STATEMENT_LABEL_C1 is console.log("First statement inside else block");
+// STATEMENT_LABEL_C2 is console.log("Second statement inside else block");
+if (i === 0) {
+  console.log("First statement inside if block");
+  console.log("Second statement inside if block");
+} else if (i === 1) {
+  console.log("First statement inside else if block");
+  console.log("Second statement inside else if block");
+} else {
+  console.log("First statement inside else block");
+  console.log("Second statement inside else block");
+}
+```
+
 ### Nested if-else statements 
+:::columns
 ```JS
 if (CONDITION_LABEL_A) {
     STATEMENT_LABEL_A1;
@@ -934,7 +1071,61 @@ if (CONDITION_LABEL_A) {
 }
 ```
 
-### Switch statement 
+```Mermaid
+flowchart TD
+  A0[Statement before nested if-else statement] --> A[Evaluate CONDITION_LABEL_A]
+  A -->|true| B[Evaluate STATEMENT_LABEL_A1]
+  B --> C[Evaluate STATEMENT_LABEL_A2]
+  C --> D[Evaluate STATEMENT_LABEL_AN]
+  D --> E[Evaluate CONDITION_LABEL_B]
+  E -->|true| F[Evaluate STATEMENT_LABEL_B1]
+  F --> G[Evaluate STATEMENT_LABEL_B2]
+  G --> H[Evaluate STATEMENT_LABEL_BN]
+  H --> I[Statement after nested if-else statement]
+  E -->|false| J[Evaluate CONDITION_LABEL_C]
+  J -->|true| K[Evaluate STATEMENT_LABEL_C1]
+  K --> L[Evaluate STATEMENT_LABEL_C2]
+  L --> M[Evaluate STATEMENT_LABEL_CN]
+  M --> I
+  J -->|false| N[Evaluate STATEMENT_LABEL_D1]
+  N --> O[Evaluate STATEMENT_LABEL_D2]
+  O --> P[Evaluate STATEMENT_LABEL_DN]
+  P --> I
+  A -->|false| Q[Evaluate STATEMENT_LABEL_E1]
+  Q --> R[Evaluate STATEMENT_LABEL_E2]
+  R --> S[Evaluate STATEMENT_LABEL_EN]
+  S --> I
+```
+:::
+
+Breakdown:
+- CONDITION_LABEL_A: This is the condition evaluated by the outer if statement. If the condition is true, the statements inside the outer if block are executed
+- STATEMENT_LABEL_A1, STATEMENT_LABEL_A2, etc.: These are the statements executed when the outer if condition is true.
+- CONDITION_LABEL_B: This is the condition evaluated by the inner if statement. If the condition is true, the statements inside the inner if block are executed
+- STATEMENT_LABEL_B1, STATEMENT_LABEL_B2, etc.: These are the statements executed when the inner if condition is true.
+- CONDITION_LABEL_C: This is the condition evaluated by the inner else if statement. If the condition is true, the statements inside the inner else if block are executed
+- STATEMENT_LABEL_C1, STATEMENT_LABEL_C2, etc.: These are the statements executed when the inner else if condition is true.
+- STATEMENT_LABEL_D1, STATEMENT_LABEL_D2, etc.: These are the statements executed when the inner else condition is true.
+- STATEMENT_LABEL_E1, STATEMENT_LABEL_E2, etc.: These are the statements executed when the outer if condition is false.
+
+Examples: 
+```JS
+if (i === 0) {
+  if (j === 0) {
+    console.log("i and j are both 0");
+  } else if (j === 1) {
+    console.log("i is 0 and j is 1");
+  } else {
+    console.log("i is 0 and j is not 0 or 1");
+  }
+}
+else {
+  console.log("i is not 0");
+}
+```
+
+### Switch statement (without default case)
+:::columns
 ```JS
 switch (VALUE_LABEL) {
     case CASE_LABEL_A:
@@ -947,8 +1138,66 @@ switch (VALUE_LABEL) {
         STATEMENT_LABEL_B2;
         STATEMENT_LABEL_BN;
         break;
+    case CASE_LABEL_C:
+        STATEMENT_LABEL_C1;
+        STATEMENT_LABEL_C2;
+        STATEMENT_LABEL_CN;
+        break;
 }
+```
 
+```Mermaid
+flowchart TD
+  A[Statement before switch statement] --> B[Evaluate VALUE_LABEL]
+  B -->|CASE_LABEL_A| C[Evaluate STATEMENT_LABEL_A1]
+  C --> D[Evaluate STATEMENT_LABEL_A2]
+  D --> E[Evaluate STATEMENT_LABEL_AN]
+  E --> F[Statement after switch statement]
+  B -->|CASE_LABEL_B| G[Evaluate STATEMENT_LABEL_B1]
+  G --> H[Evaluate STATEMENT_LABEL_B2]
+  H --> I[Evaluate STATEMENT_LABEL_BN]
+  I --> F
+  B -->|CASE_LABEL_C| J[Evaluate STATEMENT_LABEL_C1]
+  J --> K[Evaluate STATEMENT_LABEL_C2]
+  K --> L[Evaluate STATEMENT_LABEL_CN]
+  L --> F
+```
+:::
+
+Breakdown:
+- VALUE_LABEL: This is the value being evaluated by the switch statement.
+- CASE_LABEL_A, CASE_LABEL_B: These are the cases evaluated by the switch statement. If the value matches the case, the statements inside the case block are executed. If no matching case is found, the switch statement does nothing.
+- STATEMENT_LABEL_A1, STATEMENT_LABEL_A2, etc.: These are the statements executed when the value matches the CASE_LABEL_A.
+- STATEMENT_LABEL_B1, STATEMENT_LABEL_B2, etc.: These are the statements executed when the value matches the CASE_LABEL_B.
+- STATEMENT_LABEL_C1, STATEMENT_LABEL_C2, etc.: These are the statements executed when the value matches the CASE_LABEL_C.
+
+Example: 
+```JS
+const input = createInput();
+
+// VALUE_LABEL is input.value()
+// CASE_LABEL_A is "A"
+// STATEMENT_LABEL_A1 is console.log("A was selected");
+// CASE_LABEL_B is "B"
+// STATEMENT_LABEL_B1 is console.log("B was selected");
+// CASE_LABEL_C is "C"
+// STATEMENT_LABEL_C1 is console.log("C was selected");
+switch (input.value()) {
+    case "A":
+        console.log("A was selected");
+        break;
+    case "B":
+        console.log("B was selected");
+        break;
+    case "C":
+        console.log("C was selected");
+        break;
+}
+```
+
+### Switch statement (with default case)
+:::columns
+```JS	
 switch (VALUE_LABEL) {
     case CASE_LABEL_A:
         STATEMENT_LABEL_A1;
@@ -967,6 +1216,31 @@ switch (VALUE_LABEL) {
         break;
 }
 ```
+
+```Mermaid
+flowchart TD
+  A[Statement before switch statement] --> B[Evaluate VALUE_LABEL]
+  B -->|CASE_LABEL_A| C[Evaluate STATEMENT_LABEL_A1]
+  C --> D[Evaluate STATEMENT_LABEL_A2]
+  D --> E[Evaluate STATEMENT_LABEL_AN]
+  E --> F[Statement after switch statement]
+  B -->|CASE_LABEL_B| G[Evaluate STATEMENT_LABEL_B1]
+  G --> H[Evaluate STATEMENT_LABEL_B2]
+  H --> I[Evaluate STATEMENT_LABEL_BN]
+  I --> F
+  B -->|No matching case| J[Evaluate STATEMENT_LABEL_C1]
+  J --> K[Evaluate STATEMENT_LABEL_C2]
+  K --> L[Evaluate STATEMENT_LABEL_CN]
+  L --> F
+```
+:::
+
+Breakdown:
+- VALUE_LABEL: This is the value being evaluated by the switch statement.
+- CASE_LABEL_A, CASE_LABEL_B: These are the cases evaluated by the switch statement. If the value matches the case, the statements inside the case block are executed. If no matching case is found, the statements inside the default block are executed.
+- STATEMENT_LABEL_A1, STATEMENT_LABEL_A2, etc.: These are the statements executed when the value matches the CASE_LABEL_A.
+- STATEMENT_LABEL_B1, STATEMENT_LABEL_B2, etc.: These are the statements executed when the value matches the CASE_LABEL_B.
+- STATEMENT_LABEL_C1, STATEMENT_LABEL_C2, etc.: These are the statements executed when no matching case is found.
 
 ### While loop 
 :::columns
@@ -997,8 +1271,24 @@ flowchart TD
 ```
 :::
 
-### Do-while loop 
+Breakdown:
+- CONDITION_LABEL: This is the condition evaluated before each iteration. If the condition is true, the loop continues; otherwise, it stops. Note, if the condition is false initially, the loop will not execute.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These represent the block of code executed during each iteration while the condition is met.
+- INCREMENT_LABEL: This is executed at the end of each iteration. It's often used to update the loop counter. Note, an increment statement is not strictly required, but its absence is most often a mistake.
 
+Examples: 
+```JS
+// CONDITION_LABEL is i < 10
+// STATEMENT_LABEL_1 is console.log(i)
+// INCREMENT_LABEL is i++
+let i = 0;
+while (i < 10) {
+    console.log(i);
+    i++;
+}
+```
+
+### Do-while loop 
 :::columns
 ```JS
 // Single statement do-while loop
@@ -1026,6 +1316,12 @@ flowchart TD
   C -->|true| A2
 ```
 :::
+
+Breakdown:
+- CONDITION_LABEL: This is the condition evaluated after each iteration. If the condition is true, the loop continues; otherwise, it stops. Note, even if the condition is false initially, the loop will execute at least once.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These represent the block of code executed during each iteration while the condition is met.
+- INCREMENT_LABEL: This is executed at the end of each iteration. It's often used to update the loop counter. Note, an increment statement is not strictly required, but its absence is most often a mistake.
+
 
 ### For loop 
 :::columns

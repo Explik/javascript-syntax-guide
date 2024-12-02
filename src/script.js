@@ -287,6 +287,7 @@ function generateLabels() {
         CONDITION_LABEL_D: { text: 'Condition D' },
         CASE_LABEL_A: { text: 'Case A' },
         CASE_LABEL_B: { text: 'Case B' },
+        CASE_LABEL_C: { text: 'Case C' },
         INIT_LABEL: { text: 'Init' },
         INCREMENT_LABEL: { text: 'Increment' },
     };
