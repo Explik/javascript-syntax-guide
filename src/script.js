@@ -309,12 +309,14 @@ function generateLabels() {
     }
 
     const objectLabels = {
+        CLASS_NAME_LABEL: { text: 'Class name' },
         VARIABLE_NAME_LABEL: { text: 'Variable name' },
         PROPERTY_NAME_LABEL: { text: 'Property name' },
         PROPERTY_NAME_LABEL_1: { text: 'Property 1' },
         PROPERTY_NAME_LABEL_2: { text: 'Property 2' },
+        PRIVATE_PROPERTY_NAME_LABEL: { text: 'Private property name' },
         PROPERTY_NAME_LABEL_N: { text: '...', backgroundColor: '#00000000', fontWeight: undefined },
-        METHOD_NAME_LABEL: { text: 'Method' },
+        METHOD_NAME_LABEL: { text: 'Method name' },
         METHOD_NAME_LABEL_1: { text: 'Method 1' },
         METHOD_NAME_LABEL_2: { text: 'Method 2' },
         METHOD_NAME_LABEL_N: { text: '...', backgroundColor: '#00000000', fontWeight: undefined },

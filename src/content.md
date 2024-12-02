@@ -1322,6 +1322,20 @@ Breakdown:
 - STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These represent the block of code executed during each iteration while the condition is met.
 - INCREMENT_LABEL: This is executed at the end of each iteration. It's often used to update the loop counter. Note, an increment statement is not strictly required, but its absence is most often a mistake.
 
+Example: 
+```JS
+// Loop counter is declared outside the loop
+let i = 0; 
+
+// Run the loop from i=0 to i=10
+// STATEMENT_LABEL_1 is console.log(i)
+// INCREMENT_LABEL is i++
+// CONDITION_LABEL is i < 10
+do {
+    console.log(i);
+    i++;
+} while (i < 10);
+```
 
 ### For loop 
 :::columns
@@ -1420,8 +1434,8 @@ array.forEach(function(element) {
 ## Class-based syntax
 ### Class declaration with constructor 
 ```JS
-let object = new ClassName();
-class ClassName {
+let object = new CLASS_NAME_LABEL();
+class CLASS_NAME_LABEL {
     constructor() {
         STATEMENT_LABEL_1;
         STATEMENT_LABEL_2;
@@ -1429,8 +1443,8 @@ class ClassName {
     }
 }
 
-let object = new ClassName(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
-class ClassName {
+let object = new CLASS_NAME_LABEL(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
+class CLASS_NAME_LABEL {
     constructor(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
         STATEMENT_LABEL_1;
         STATEMENT_LABEL_2;
@@ -1439,59 +1453,172 @@ class ClassName {
 }
 ```
 
+Example: 
+```JS
+// Create a new instance of the Person class
+// CLASS_NAME_LABEL is Person
+// ARGUMENT_LABEL_1 is "John"
+// ARGUMENT_LABEL_2 is "Doe"
+let person = new Person("John", "Doe");
+
+// Declare the Person class
+// CLASS_NAME_LABEL is Person
+// PARAMETER_LABEL_1 is firstName
+// PARAMETER_LABEL_2 is lastName
+// STATEMENT_LABEL_1 is this.firstName = firstName;
+// STATEMENT_LABEL_2 is this.lastName = lastName;
+class Person {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+```
+
 ### Class declaration with property 
 ```JS
-let obj = new ClassName();
-let value = obj.propertyName;
-obj.propertyName = NEW_VALUE_LABEL;
+let obj = new CLASS_NAME_LABEL();
+let value = obj.PROPERTY_NAME_LABEL;
+obj.PROPERTY_NAME_LABEL = NEW_VALUE_LABEL;
 
 class ClassName {
     constructor() {
-        this.propertyName = INITIAL_VALUE_LABEL;
+        this.PROPERTY_NAME_LABEL = INITIAL_VALUE_LABEL;
+    }
+}
+```
+
+Example: 
+```JS
+// Create a new instance of the Person class
+// CLASS_NAME_LABEL is Person
+let person = new Person();
+
+// Access the name property of the person object
+// PROPERTY_NAME_LABEL is name
+console.log(person.name); // Prints "John Doe"
+
+// Change the name property of the person object
+// PROPERTY_NAME_LABEL is name
+// NEW_VALUE_LABEL is "Johnny"
+person.name = "Johnny";
+console.log(person.name); // Prints "Johnny"
+
+// Declare the Person class
+// CLASS_NAME_LABEL is Person
+// PROPERTY_NAME_LABEL is name
+// INITIAL_VALUE_LABEL is "John Doe"
+class Person {
+    constructor(name) {
+        this.name = "John Doe";
     }
 }
 ```
 
 ### Class declaration with get/set property
 ```JS
-let object = new ClassName();
-let value = object.propertyName;
-object.propertyName = NEW_VALUE_LABEL;
+let object = new CLASS_NAME_LABEL();
+let value = object.PROPERTY_NAME_LABEL;
+object.PROPERTY_NAME_LABEL = NEW_VALUE_LABEL;
 
-class ClassName {
+class CLASS_NAME_LABEL {
     constructor() {
-        this._propertyName = INITIAL_VALUE_LABEL;
+        this.PRIVATE_PROPERTY_NAME_LABEL = INITIAL_VALUE_LABEL;
     }
 
-    get propertyName() {
-        return this._propertyName;
+    get PROPERTY_NAME_LABEL() {
+        return this.PRIVATE_PROPERTY_NAME_LABEL;
     }
 
-    set propertyName(value) {
+    set PROPERTY_NAME_LABEL(value) {
         STATEMENT_LABEL_1;
         STATEMENT_LABEL_2;
         STATEMENT_LABEL_N;
-        this._propertyName = value;
+        this.PRIVATE_PROPERTY_NAME_LABEL = value;
+    }
+}
+```
+
+Example: 
+```JS
+// Create a new instance of the Person class
+// CLASS_NAME_LABEL is Person
+let person = new Person();
+
+// Access the name property of the person object
+// PROPERTY_NAME_LABEL is name
+let name = person.name;
+console.log(name) // Prints "John Doe"
+
+// Change the name property of the person object
+// PROPERTY_NAME_LABEL is name
+// NEW_VALUE_LABEL is "Johnny"
+person.name = "Johnny"; // Prints "Setting name to Johnny"
+console.log(person.name); // Prints "Johnny"
+
+// Declare the Person class
+class Person {
+    constructor() {
+        this._name = "John Doe";
+    }
+
+    get name() {
+        return this._name;
+    }
+
+    set name(value) {
+        console.log("Setting name to " + value);
+        this._name = value;
     }
 }
 ```
 
 ### Class declaration with methods without return values
 ```JS
-let object = new ClassName();
-object.methodName1();
-object.methodName2(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
+let object = new CLASS_NAME_LABEL();
+object.METHOD_NAME_LABEL_1();
+object.METHOD_NAME_LABEL_2(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
 
 class ClassName {
-    methodName1() {
+    METHOD_NAME_LABEL_1() {
         STATEMENT_LABEL_1;
         STATEMENT_LABEL_2;
         STATEMENT_LABEL_N;
     }
-    methodName2(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
+    METHOD_NAME_LABEL_1(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
         STATEMENT_LABEL_1;
         STATEMENT_LABEL_2;
         STATEMENT_LABEL_N;
+    }
+}
+```
+
+Example: 
+```JS
+// Create a new instance of the Person class
+// CLASS_NAME_LABEL is Person
+let person = new Person();
+
+// Call the greet method of the person object
+// METHOD_NAME_LABEL is greet
+person.greetWorld(); // Prints "Hello world!"
+
+// Call the greet method of the person object with a name argument
+// METHOD_NAME_LABEL is greet
+// ARGUMENT_LABEL_1 is "Alice"
+person.greetPerson("Alice"); // Prints "Hello, Alice!"
+
+// Declare the Person class
+// CLASS_NAME_LABEL is Person
+// METHOD_NAME_LABEL_1 is greetWorld
+// METHOD_NAME_LABEL_2 is greetPerson
+class Person {
+    greetWorld() {
+        console.log("Hello world!");
+    }
+
+    greetPerson(name) {
+      console.log("Hello, " + name + "!");
     }
 }
 ```
@@ -1499,21 +1626,52 @@ class ClassName {
 ### Class declaration with methods with return values
 ```JS
 let object = new ClassName();
-let value1 = object.methodName1();
-let value2 = object.methodName2(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
+let value1 = object.METHOD_NAME_LABEL_1();
+let value2 = object.METHOD_NAME_LABEL_2(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
 
 class ClassName {
-    methodName1() {
+    METHOD_NAME_LABEL_1() {
         STATEMENT_LABEL_A1;
         STATEMENT_LABEL_A2;
         STATEMENT_LABEL_AN;
         return RETURN_VALUE_LABEL;
     }
-    methodName2(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
+    METHOD_NAME_LABEL_2(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
         STATEMENT_LABEL_B1;
         STATEMENT_LABEL_B2;
         STATEMENT_LABEL_BN;
         return RETURN_VALUE_LABEL;
+    }
+}
+```
+
+Example: 
+```JS
+// Create a new instance of the Calculator class
+// CLASS_NAME_LABEL is Calculator
+let calculator = new Calculator();
+
+// Call the add method of the calculator object
+// METHOD_NAME_LABEL_1 is add
+let sum = calculator.add(5, 3);
+console.log(sum); // Prints "8"
+
+// Call the multiply method of the calculator object
+// METHOD_NAME_LABEL_2 is multiply
+let product = calculator.multiply(5, 3);
+console.log(product); // Prints "15"
+
+// Declare the Calculator class
+// CLASS_NAME_LABEL is Calculator
+// METHOD_NAME_LABEL_1 is add
+// METHOD_NAME_LABEL_2 is multiply
+class Calculator {
+    add(a, b) {
+        return a + b;
+    }
+
+    multiply(a, b) {
+        return a * b;
     }
 }
 ```
