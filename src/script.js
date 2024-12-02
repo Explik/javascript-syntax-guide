@@ -145,6 +145,12 @@ function generateLabels() {
         RETURN_VALUE_LABEL: {
             text: 'Return Value',
         },
+        RETURN_VALUE_LABEL_1: {
+            text: 'Return Value 1',
+        },
+        RETURN_VALUE_LABEL_2: {
+            text: 'Return Value 2',
+        },
         ARGUMENT_LABEL: {
             text: 'Argument',
         },

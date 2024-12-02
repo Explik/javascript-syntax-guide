@@ -372,7 +372,7 @@ function greet(name) {
 }
 ```
 
-### Function calls without parameters or return value
+### Function calls without parameters nor return value
 :::columns
 ```JS
 FUNCTION_NAME_LABEL();
@@ -431,7 +431,7 @@ function greet() {
 }
 ```
 
-### Function calls with parameters but without return value
+### Function calls with parameters but no return value
 :::columns
 ```JS
 FUNCTION_NAME_LABEL(ARGUMENT_LABEL_A1, ARGUMENT_LABEL_A2, ARGUMENT_LABEL_AN);
@@ -503,22 +503,86 @@ function greet(name) {
 }
 ```
 
-### Function calls with parameters and return value
+### Function calls with return value but no parameters
+:::columns
 ```JS
-let value1 = functionName();
-let value2 = functionName();
+let value1 = FUNCTION_NAME_LABEL();
+let value2 = FUNCTION_NAME_LABEL();
 
-function functionName() {
+function FUNCTION_NAME_LABEL() {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
     return RETURN_VALUE_LABEL;
 }
+```
 
+```Mermaid
+flowchart TD
+  A[Statement before first declaration] ---> C
+  C[Evaluate STATEMENT_LABEL_1] --> D
+  D[Evaluate STATEMENT_LABEL_2] --> E
+  E[Evaluate STATEMENT_LABEL_N] --> E2
+  E2[Return RETURN_VALUE_LABEL] --> F
+  F[let value 1 = RETURN_VALUE_LABEL] --> G  
+  G[Evaluate STATEMENT_LABEL_1] --> I
+  I[Evaluate STATEMENT_LABEL_2] --> J
+  J[Evaluate STATEMENT_LABEL_N] --> J2
+  J2[Return RETURN_VALUE_LABEL] --> K
+  K[let value 2 = RETURN_VALUE_LABEL] --> L
+  L[Statement after second declaration call]
+
+  subgraph "first function call"
+    C
+    D
+    E
+    E2
+  end
+
+  subgraph "second function call"
+    G
+    I
+    J
+    J2
+  end
+```
+:::
+
+Breakdown: 
+- FUNCTION_NAME_LABEL: This is the name of the function being called.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These are the statements executed when the function is called.
+- RETURN_VALUE_LABEL: This is the value returned by the function.
+
+Examples: 
+```JS
+// Assign time1 to the result of the getCurrentTime function
+// FUNCTION_NAME_LABEL is getCurrentTime
+const time1 = getCurrentTime();
+console.log("Current time: " + time1); // Prints "Current time: 1:37:12 PM"
+
+// Assign time2 to the result of the getCurrentTime function
+// FUNCTION_NAME_LABEL is getCurrentTime
+const time2 = getCurrentTime();
+console.log("Current time: " + time2); // Prints "Current time: 1:37:13 PM"
+
+// Declare function getCurrentTime
+// FUNCTION_NAME_LABEL is getCurrentTime
+// STATEMENT_LABEL_1 is const date = new Date();
+// STATEMENT_LABEL_2 is return date.toLocaleTimeString();
+// RETURN_VALUE_LABEL is the result of new Date().toLocaleTimeString()
+function getCurrentTime() {
+    const date = new Date(); 
+    return date.toLocaleTimeString();
+}
+```
+
+### Function calls with parameters and return value
+:::columns
+```JS
 let value1 = functionName(ARGUMENT_LABEL_A1, ARGUMENT_LABEL_A2, ARGUMENT_LABEL_AN);
 let value2 = functionName(ARGUMENT_LABEL_B1, ARGUMENT_LABEL_B2, ARGUMENT_LABEL_BN);
 
-function functionName(parameter1, parameter2, parametern) {
+function functionName(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
@@ -526,11 +590,82 @@ function functionName(parameter1, parameter2, parametern) {
 };
 ```
 
-### Function call with early return 
-```JS
-functionName(); 
+```Mermaid
+flowchart TD
+  A[Statement before first declaration] ---> C0
+  C0[PARAMETER_LABEL_1 = ARGUMENT_LABEL_A1\n PARAMETER_LABEL_2 = ARGUMENT_LABEL_A2\n ELIPSIS_LABEL] --> C
+  C[Evaluate STATEMENT_LABEL_1] --> D
+  D[Evaluate STATEMENT_LABEL_2] --> E
+  E[Evaluate STATEMENT_LABEL_N] --> E2
+  E2[Return RETURN_VALUE_LABEL] --> F
+  F[let value 1 = RETURN_VALUE_LABEL] --> G  
+  G[Evaluate STATEMENT_LABEL_1] --> I0
+  I0[PARAMETER_LABEL_1 = ARGUMENT_LABEL_B1\n PARAMETER_LABEL_2 = ARGUMENT_LABEL_B2\n ELIPSIS_LABEL] --> I
+  I[Evaluate STATEMENT_LABEL_1] --> J
+  J[Evaluate STATEMENT_LABEL_2] --> K
+  K[Evaluate STATEMENT_LABEL_N] --> K2
+  K2[Return RETURN_VALUE_LABEL] --> L
+  L[let value 2 = RETURN_VALUE_LABEL] --> M
+  M[Statement after second declaration call]
 
-function functionName() {
+  subgraph "first function call"
+    C0
+    C
+    D
+    E
+    E2
+  end
+
+  subgraph "second function call"
+    G
+    I0
+    I
+    J
+    K
+    K2
+  end
+```
+:::
+
+Breakdown:
+- FUNCTION_NAME_LABEL: This is the name of the function being called.
+- ARGUMENT_LABEL_A1, ARGUMENT_LABEL_A2, etc.: These are the values passed to the function on the first function call.
+- ARGUMENT_LABEL_B1, ARGUMENT_LABEL_B2, etc.: These are the values passed to the function on the second function call.
+- PARAMETER_LABEL_1, PARAMETER_LABEL_2, etc.: These are the names of the values passed to the function, which can be used inside the function. The names remain the same, but the value might change for each function call.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These are the statements executed when the function is called.
+
+Examples: 
+```JS
+// Assign the result of the sum function to value1
+// FUNCTION_NAME_LABEL is sum
+// ARGUMENT_LABEL_A1 is 5
+// ARGUMENT_LABEL_A2 is 3
+const value1 = sum(5, 3);
+console.log(value1); // Prints "8"
+
+// Assign the result of the sum function to value2
+// FUNCTION_NAME_LABEL is sum
+// ARGUMENT_LABEL_B1 is 10
+// ARGUMENT_LABEL_B2 is 5
+const value2 = sum(10, 5);
+console.log(value2); // Prints "15"
+
+// Declare the sum function
+// FUNCTION_NAME_LABEL is sum
+// PARAMETER_LABEL_1 is a, PARAMETER_LABEL_2 is b
+// STATEMENT_LABEL_1 is return a + b;
+// RETURN_VALUE_LABEL is the result of a + b
+function sum(a, b) {
+    return a + b;
+}
+```
+
+### Function call with early return without value
+:::columns
+```JS
+FUNCTION_NAME_LABEL(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N); 
+
+function FUNCTION_NAME_LABEL(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
     if (CONDITION_LABEL) 
         return;
     
@@ -539,18 +674,138 @@ function functionName() {
     STATEMENT_LABEL_N;
 }
 ```
+  
+```Mermaid
+flowchart TD
+  A[Statement before function call] --> B[Evaluate CONDITION_LABEL]
+  B -->|false| C[Evaluate STATEMENT_LABEL_1]
+  C --> D[Evaluate STATEMENT_LABEL_2]
+  D --> E[Evaluate STATEMENT_LABEL_N]
+  E --> F[Statement after function call]
+  B -->|true| F
 
-### Function call with early return and value 
+  subgraph "function call"
+    B
+    C
+    D
+    E
+  end
+```
+::: 
+
+Breakdown: 
+- FUNCTION_NAME_LABEL: This is the name of the function being called.
+- ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, etc.: These are the values passed to the function.
+- PARAMETER_LABEL_1, PARAMETER_LABEL_2, etc.: These are the names of the values passed to the function, which can be used inside the function.
+- CONDITION_LABEL: This is the condition that, if met, causes the function to return early.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These are the statements executed when the function is called and the early return condition is not met.
+
+Example: 
 ```JS
-let value = functionName();
+let sizeOutput = createInput();
 
-function functionName() {
+// Set size to a valid value of 5 
+// FUNCTION_NAME_LABEL is setSize
+// ARGUMENT_LABEL_A1 is 5
+setSize(5);
+
+// Attempt to set size to an invalid value of -1, which will be ignored
+// FUNCTION_NAME_LABEL is setSize
+// ARGUMENT_LABEL_B1 is -1
+setSize(-1);
+
+// FUNCTION_NAME_LABEL is setSize
+// PARAMETER_LABEL_1 is size
+// CONDITION_LABEL is size < 0
+// STATEMENT_LABEL_1 is sizeOutput.value(size);
+function setSize(size) {
+    if (size < 0) 
+        return;
+    
+    sizeOutput.value(size);
+}
+```
+
+### Function call with early return with value 
+:::columns
+```JS
+let value = FUNCTION_NAME_LABEL(ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, ARGUMENT_LABEL_N);
+
+function FUNCTION_NAME_LABEL(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LABEL_N) {
     if (CONDITION_LABEL) 
-        return RETURN_VALUE_LABEL;
+        return RETURN_VALUE_LABEL_1;
     
     STATEMENT_LABEL_1;
     STATEMENT_LABEL_2;
     STATEMENT_LABEL_N;
+    return RETURN_VALUE_LABEL_2;
+}
+```
+
+```Mermaid
+flowchart TD
+  A[Statement before declaration] --> A2
+  A2[PARAMETER_LABEL_1 = ARGUMENT_LABEL_1\n PARAMETER_LABEL_2 = ARGUMENT_LABEL_2\n ELIPSIS_LABEL] --> B[Evaluate CONDITION_LABEL]
+  B -->|false| C[Evaluate STATEMENT_LABEL_1]
+  C --> D[Evaluate STATEMENT_LABEL_2]
+  D --> E[Evaluate STATEMENT_LABEL_N]
+  E --> F[Return RETURN_VALUE_LABEL_2]
+  F --> G[let value = RETURN_VALUE_LABEL]
+  G --> H[Statement after declaration]
+  B --> |true| I[Return RETURN_VALUE_LABEL_1]
+  I --> G
+
+  subgraph "function call"
+    A2
+    B
+    C
+    D
+    E
+    F
+    I
+  end
+```
+:::
+
+Breakdown:
+- FUNCTION_NAME_LABEL: This is the name of the function being called.
+- ARGUMENT_LABEL_1, ARGUMENT_LABEL_2, etc.: These are the values passed to the function.
+- PARAMETER_LABEL_1, PARAMETER_LABEL_2, etc.: These are the names of the values passed to the function, which can be used inside the function.
+- CONDITION_LABEL: This is the condition that, if met, causes the function to return early.
+- STATEMENT_LABEL_1, STATEMENT_LABEL_2, etc.: These are the statements executed when the function is called and the early return condition is not met.
+- RETURN_VALUE_LABEL_1: This is the value returned when the early return condition is met.
+- RETURN_VALUE_LABEL_2: This is the value returned when the early return condition is not met.
+
+Example: 
+```JS
+
+// Assign the result of the multiply function to value1
+// FUNCTION_NAME_LABEL is multiply
+// ARGUMENT_LABEL_A1 is 5
+// ARGUMENT_LABEL_A2 is 3
+const value 1 = multiply(5, 3);
+console.log(value1); // Prints "15"
+
+// Assign the result of the multiply function to value2
+// FUNCTION_NAME_LABEL is multiply
+// ARGUMENT_LABEL_B1 is 0 (triggers early return)
+// ARGUMENT_LABEL_B2 is 3
+const value2 = multiply(0, 3);
+console.log(value2); // Prints "0"
+
+// Declare the multiply function
+// FUNCTION_NAME_LABEL is multiply
+// PARAMETER_LABEL_1 is a, PARAMETER_LABEL_2 is b
+// CONDITION_LABEL is a === 0 || b === 0
+// STATEMENT_LABEL_1 is return 0;
+// RETURN_VALUE_LABEL_1 is 0
+// STATEMENT_LABEL_2 is return a * b;
+// RETURN_VALUE_LABEL_2 is the result of a * b
+function multiply(a, b) {
+    if (a === 0 || b === 0) 
+        return 0;
+    
+    return a * b;
 }
 ```
 
