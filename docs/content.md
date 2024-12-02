@@ -1241,6 +1241,29 @@ Breakdown:
 - STATEMENT_LABEL_B1, STATEMENT_LABEL_B2, etc.: These are the statements executed when the value matches the CASE_LABEL_B.
 - STATEMENT_LABEL_C1, STATEMENT_LABEL_C2, etc.: These are the statements executed when no matching case is found.
 
+Example: 
+```JS
+const input = createInput();
+
+// VALUE_LABEL is input.value()
+// CASE_LABEL_A is "A"
+// STATEMENT_LABEL_A1 is console.log("A was selected");
+// CASE_LABEL_B is "B"
+// STATEMENT_LABEL_B1 is console.log("B was selected");
+// STATEMENT_LABEL_C1 is console.log("No matching case was found");
+switch (input.value()) {
+    case "A":
+        console.log("A was selected");
+        break;
+    case "B":
+        console.log("B was selected");
+        break;
+    default:
+        console.log("No matching case was found");
+        break;
+}
+```
+
 ### While loop 
 :::columns
 ```JS
