@@ -908,7 +908,6 @@ if (CONDITION_LABEL) {
 }
 ```
 
-```JS
 ```Mermaid
   flowchart TD
     A[Statement before if-else statement] --> B[Evaluate CONDITION_LABEL]
