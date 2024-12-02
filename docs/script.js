@@ -31,7 +31,7 @@ async function initializeAsync() {
     await populateElement('content.md', preElement);
 
     const markdownElement = convertToMarkdownElement(preElement);
-    setTimeout(() => highlightLabels(markdownElement), 100); // Wait for mermaid.js to render diagrams
+    setTimeout(() => highlightLabels(markdownElement), 200); // Wait for mermaid.js to render diagrams
 }
 
 async function populateElement(url, element) {
