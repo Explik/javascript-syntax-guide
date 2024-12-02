@@ -302,6 +302,7 @@ function generateLabels() {
     }
 
     const objectLabels = {
+        VARIABLE_NAME_LABEL: { text: 'Variable name' },
         PROPERTY_NAME_LABEL: { text: 'Property name' },
         PROPERTY_NAME_LABEL_1: { text: 'Property 1' },
         PROPERTY_NAME_LABEL_2: { text: 'Property 2' },

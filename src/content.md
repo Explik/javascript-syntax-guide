@@ -58,71 +58,83 @@ TODO write section
 ### Variable declaration
 ```JS
 // Unitialized variable declaration
-let variable;
+let VARIABLE_NAME_LABEL;
 
 // Initialized variable declaration
-let variable = INITIAL_VALUE_LABEL;
+let VARIABLE_NAME_LABEL = INITIAL_VALUE_LABEL;
 
-// Multiple variable declaration
-const variable = INITIAL_VALUE_LABEL;
+// Constant variable declaration
+const VARIABLE_NAME_LABEL = INITIAL_VALUE_LABEL;
 ```
 
 Breakdown: 
+- VARIABLE_NAME_LABEL: This is the name of the variable, which will be used to access the underlying value.
 - INITIAL_VALUE_LABEL: This is the initial value assigned to the variable. For non-const variables, the value can be reassigned later. For const variables, the value cannot be reassigned ever.
 
 Examples: 
 ```JS
-// No initial value is given
+// VARIABLE_NAME_LABEL is variable and no initial value is given
 let variable;
-console.log("variable"); // prints undefined (or nothing)
+console.log(variable); // prints undefined (or nothing)
 ```
 
 ```JS	
+// VARIABLE_NAME_LABEL is result
 // INITIAL_VALUE_LABEL is the result of 5 * 5 + 3
-let variable = 5 * 5 + 3;
-console.log(variable); // prints "28"
+let result = 5 * 5 + 3;
+console.log(result); // prints "28"
 ```
 
 ```JS
+// VARIABLE_NAME_LABEL is result
 // INITIAL_VALUE_LABEL is the result of 3 * (3 + 2)
-const variable = 3 * (3 + 2);
-console.log(variable); // prints "15"
+const result = 3 * (3 + 2);
+console.log(result); // prints "15"
 ```
 
 ### Variable reassigment
 ```JS
-// Variable reassignment of uninitialized variable
-let variable; 
-variable = NEW_VALUE_LABEL;
+// Reassignment of uninitialized variable
+let VARIABLE_NAME_LABEL; 
+VARIABLE_NAME_LABEL = NEW_VALUE_LABEL;
 
-// Variable reassignment of initialized variable
-let variable = INITIAL_VALUE_LABEL; 
-variable = NEW_VALUE_LABEL;
+// Reassignment of initialized variable
+let VARIABLE_NAME_LABEL = INITIAL_VALUE_LABEL; 
+VARIABLE_NAME_LABEL = NEW_VALUE_LABEL;
 ```
 
 Breakdown:
+- VARIABLE_NAME_LABEL: This is the name of the variable, which will be used to access/manipulate the underlying value.
 - INITIAL_VALUE_LABEL: This is the initial value assigned to the variable.
 - NEW_VALUE_LABEL: This is the new value assigned to the variable.
 
 Examples: 
 ```JS
+// Declare the variable
 // No initial value is given
-let unitializedVariable;
-console.log(unitializedVariable); // prints undefined (or nothing)
+// VARIABLE_NAME_LABEL is result
+let result;
+console.log(result); // prints undefined (or nothing)
 
+// Reassign the variable
+// VARIABLE_NAME_LABEL is result
 // NEW_VALUE_LABEL is the result of 5 * 4
-unitializedVariable = 5 * 4;
-console.log(unitializedVariable); // prints "20"
+result = 5 * 4;
+console.log(result); // prints "20"
 ```
 
 ```JS
+// Declare the variable
+// VARIABLE_NAME_LABEL is message
 // INITIAL_VALUE_LABEL is "hello world" 
-let initializedVariable = "hello world";
-console.log(initializedVariable); // prints "hello world"
+let message = "hello world";
+console.log(message); // prints "hello world"
 
+// Reassign the variable
+// VARIABLE_NAME_LABEL is message
 // NEW_VALUE_LABEL is "hello world again"
-initializedVariable = "hello world again";
-console.log(initializedVariable); // prints "hello world again"
+message = "hello world again";
+console.log(message); // prints "hello world again"
 ```
 
 ### Object property reading 
