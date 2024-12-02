@@ -78,13 +78,13 @@ console.log("variable"); // prints undefined (or nothing)
 ```
 
 ```JS	
-// INITIAL_VALUE_LABEL is 5 * 5 + 3
+// INITIAL_VALUE_LABEL is the result of 5 * 5 + 3
 let variable = 5 * 5 + 3;
 console.log(variable); // prints "28"
 ```
 
 ```JS
-// INITIAL_VALUE_LABEL is 3 * (3 + 2)
+// INITIAL_VALUE_LABEL is the result of 3 * (3 + 2)
 const variable = 3 * (3 + 2);
 console.log(variable); // prints "15"
 ```
@@ -110,7 +110,7 @@ Examples:
 let unitializedVariable;
 console.log(unitializedVariable); // prints undefined (or nothing)
 
-// NEW_VALUE_LABEL is 5 * 4
+// NEW_VALUE_LABEL is the result of 5 * 4
 unitializedVariable = 5 * 4;
 console.log(unitializedVariable); // prints "20"
 ```
