@@ -60,11 +60,13 @@ async function renderElementAsync(preElement) {
     preElement.replaceWith(renderedOutput);
 
     // Render mermaid diagrams
-    mermaid.initialize({ startOnLoad: false });
+    mermaid.initialize({ 
+        startOnLoad: false, 
+        flowchart: { htmlContent: true, htmlLabels: true } 
+    });
     await mermaid.run({
         querySelector: '.mermaid',
     });
-    mermaid.initialize();
 
     // Render labels 
     highlightLabels(renderedOutput);
@@ -83,9 +85,8 @@ function renderCode(str, lang) {
 
 function renderDiagram(code) {
     try {
-        //mermaid.initialize({ startOnLoad: true });
-        //mermaid.parse(code);
-        return `<pre class="mermaid">${code}</pre>`;
+        const newCode = code.replace(/\\n/g, '&#xA;');
+        return `<pre class="mermaid">${newCode}</pre>`;
     } catch ({ str, hash }) {
         return `<pre>${str}</pre>`;
     }
