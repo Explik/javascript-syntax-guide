@@ -928,7 +928,7 @@ console.log("Unrelated statement");
 ```
 
 ### If/else statement (single-statement)
-::: columns
+:::columns
 ```JS
 if (CONDITION_LABEL) 
     STATEMENT_LABEL_1;
@@ -1007,7 +1007,7 @@ if (i === 0) {
 ```
 
 ### If/else if/else (single statement)
-:::column
+:::columns
 ```JS
 if (CONDITION_LABEL_A) 
     STATEMENT_LABEL_A;
