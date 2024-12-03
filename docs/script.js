@@ -114,6 +114,15 @@ function highlightLabels(element) {
 
 function generateLabels() {
     const valueLabels = {
+        PLACEHOLDER_LABEL: {
+            text: 'Placeholder',
+        },
+        PLACEHOLDER_LABEL_1: {
+            text: 'Placeholder 1',
+        },
+        PLACEHOLDER_LABEL_2: {
+            text: 'Placeholder 2',
+        },
         VALUE_LABEL: {
             text: 'Value',
         },
@@ -198,6 +207,12 @@ function generateLabels() {
         },
         STATEMENT_LABEL_2: {
             text: 'Statement 2',
+        },
+        STATEMENT_LABEL_3: {
+            text: 'Statement 3',
+        },
+        STATEMENT_LABEL_4: {
+            text: 'Statement 4',
         },
         STATEMENT_LABEL_N: {
             text: '...',

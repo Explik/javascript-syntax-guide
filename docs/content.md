@@ -51,8 +51,76 @@ Lecture 8 & 9
 - `new Data().toLocaleDateString()` - Formatting date value
 - `stringValue.split(separator)` - Split string into array
 
-## Notation 
-TODO write section
+## Notation used for syntax
+### Code notation 
+The syntax examples consists of regular code and placeholders, which are used to represent the variable names, function names, etc.
+The placeholders are written like this `PLACEHOLDER_LABEL`, where `PLACEHOLDER_LABEL` is the name of the placeholder. The placeholder can be any valid variable name, function name, value, etc as long as it is consistent throughout the example. 
+
+```JS
+let PLACEHOLDER_LABEL_1 = "Hello world!";
+let PLACEHOLDER_LABEL_2 = 'Hello other world!';
+
+console.log(PLACEHOLDER_LABEL_1); // prints "Hello world!"
+console.log(PLACEHOLDER_LABEL_2); // prints "Hello other world!"
+```
+
+**Can be read as:**
+```JS
+let variable1 = "Hello world!";
+let variable2 = 'Hello other world!';
+
+console.log(variable1); // prints "Hello world!"
+console.log(variable2); // prints "Hello other world!"
+```
+
+**Or**
+```JS
+let message1 = "Hello world!";
+let message2 = 'Hello other world!';
+
+console.log(message1); // prints "Hello world!"
+console.log(message2); // prints "Hello other world!"
+```
+
+### Flowchart notation
+Flowcharts are used, throughtout the guide, to represent non-linear flows in code.
+Usually code flows from one line to the next, but in some cases the flow can be interrupted by conditions, loops, etc. In these cases, a flowchart is used to represent the flow of the code.
+
+Linear flow: 
+:::columns 
+```JS
+STATEMENT_LABEL_1; 
+STATEMENT_LABEL_2;
+STATEMENT_LABEL_N;
+```
+
+```Mermaid
+flowchart TD
+  A[Evaluate STATEMENT_LABEL_1] --> B[Evaluate STATEMENT_LABEL_2]
+  B --> C[Evaluate STATEMENT_LABEL_N]
+```
+:::
+
+Non-linear flow:
+:::columns 
+```JS
+STATEMENT_LABEL_1;
+if (CONDITION_LABEL) 
+    STATEMENT_LABEL_2;
+else 
+    STATEMENT_LABEL_3;
+STATEMENT_LABEL_4;
+```
+
+```Mermaid
+flowchart TD
+  A[Evaluate STATEMENT_LABEL_1] --> B[Evaluate CONDITION_LABEL]
+  B -->|true| C[Evaluate STATEMENT_LABEL_2]
+  C --> D[Evaludate STATEMENT_LABEL_4]
+  B -->|false| E[Evaluate STATEMENT_LABEL_3]
+  E --> D
+```
+:::
 
 ## Expression/statement syntax
 ### Variable declaration
