@@ -444,7 +444,7 @@ function greet(name) {
 ```
 
 ### Function calls without parameters nor return value
-:::columns
+:::asymmetric-columns
 ```JS
 FUNCTION_NAME_LABEL();
 ELIPSIS_LABEL
@@ -1010,7 +1010,7 @@ if (i === 0) {
 ```
 
 ### If/else if/else (single statement)
-:::columns
+:::asymmetric-columns
 ```JS
 if (CONDITION_LABEL_A) 
     STATEMENT_LABEL_A;
@@ -1053,7 +1053,7 @@ else
 ```
 
 ### If/else if/else (multi-statement)
-:::columns
+:::asymmetric-columns
 ```JS
 if (CONDITION_LABEL_A) {
     STATEMENT_LABEL_A1;
@@ -1112,7 +1112,7 @@ if (i === 0) {
 ```
 
 ### Nested if-else statements 
-:::columns
+:::asymmetric-columns
 ```JS
 if (CONDITION_LABEL_A) {
     STATEMENT_LABEL_A1;
@@ -1195,7 +1195,7 @@ else {
 ```
 
 ### Switch statement (without default case)
-:::columns
+:::asymmetric-columns
 ```JS
 switch (VALUE_LABEL) {
     case CASE_LABEL_A:
@@ -1266,7 +1266,7 @@ switch (input.value()) {
 ```
 
 ### Switch statement (with default case)
-:::columns
+:::asymmetric-columns
 ```JS	
 switch (VALUE_LABEL) {
     case CASE_LABEL_A:
