@@ -47,6 +47,15 @@ async function renderElementAsync(preElement) {
             }
         },
     });
+    md.use(markdownitContainer, 'asymmetric-columns', {
+        render(tokens, idx) {
+            if (tokens[idx].nesting === 1) {
+                return '<div class="asymmetric-columns">\n';
+            } else {
+                return '</div>\n';
+            }
+        },
+    });
     md.use(markdownitAnchor);
     md.use(markdownItTableOfContents, { 
         includeLevel: [2, 3] 
