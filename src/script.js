@@ -1,5 +1,7 @@
 import markdownit from 'markdown-it'; 
 import markdownitContainer from 'markdown-it-container';
+import markdownitAnchor from 'markdown-it-anchor';
+import markdownItTableOfContents from 'markdown-it-table-of-contents';
 import hljs from 'highlight.js' 
 import mermaid from 'mermaid';
 
@@ -45,6 +47,10 @@ async function renderElementAsync(preElement) {
             }
         },
     });
+    md.use(markdownitAnchor);
+    md.use(markdownItTableOfContents, { 
+        includeLevel: [2, 3] 
+    }); 
 
     // Replace the pre element with the rendered HTML content
     const markdownText = preElement.textContent;

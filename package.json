@@ -2,13 +2,16 @@
   "type": "module",
   "scripts": {
     "build": "webpack --mode=production",
-    "build-dev": "webpack --mode=development"
+    "build-dev": "webpack --mode=development",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@wekanteam/markdown-it-mermaid": "^0.6.4",
     "highlight.js": "^11.10.0",
     "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
     "markdown-it-container": "^4.0.0",
+    "markdown-it-table-of-contents": "^0.8.0",
     "mermaid": "^11.4.1"
   },
   "devDependencies": {

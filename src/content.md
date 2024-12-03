@@ -1,5 +1,8 @@
 # JavaScript syntax guide 
 
+## Table of contents
+[[toc]]
+
 ## Lecture-by-lecture breakdown 
 
 Lecture 1
@@ -402,7 +405,7 @@ array[array.length] = 4;
 console.log(array); // prints "[1, 2, 3, 4]"
 ```
 
-# Function syntax
+## Function syntax
 ### Function declaration 
 ```JS
 function FUNCTION_NAME_LABEL() { 
