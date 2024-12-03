@@ -1,37 +1,15 @@
-const labels = {
-    INIT_LABEL: {
-        text: 'Init',
-        backgroundColor: '#ff6666'
-    },
-    CONDITION_LABEL: {
-        text: 'Condition',
-        backgroundColor: '#ff6666'
-    },
-    STATEMENT_LABEL_1: {
-        text: 'Statement 1',
-        backgroundColor: '#66ff66'
-    },
-    STATEMENT_LABEL_2: {
-        text: 'Statement 2',
-        backgroundColor: '#66ff66'
-    },
-    STATEMENT_LABEL_N: {
-        text: '...',
-        backgroundColor: '#00000000',
-        fontWeight: undefined
-    },
-    INCREMENT_LABEL: {
-        text: 'Increment',
-        backgroundColor: '#ff6666'
-    }
-};
+import markdownit from 'markdown-it'; 
+import markdownitContainer from 'markdown-it-container';
+import hljs from 'highlight.js' 
+import mermaid from 'mermaid';
+
+initializeAsync();
 
 async function initializeAsync() {
     const preElement = document.querySelector('pre.markdown');
     await populateElement('content.md', preElement);
 
-    const markdownElement = convertToMarkdownElement(preElement);
-    setTimeout(() => highlightLabels(markdownElement), 200); // Wait for mermaid.js to render diagrams
+    await renderElementAsync(preElement);
 }
 
 async function populateElement(url, element) {
@@ -41,9 +19,8 @@ async function populateElement(url, element) {
     element.innerHTML = content;
 }
 
-function convertToMarkdownElement(preElement) {
-    // Render the markdown content to HTML
-    //const md = window.markdownit({ highlight: highlightCode });
+async function renderElementAsync(preElement) {
+    // Render the markdown content (with columns) to HTML
     const md = markdownit({
         html: true,
         highlight: function (str, lang) {
@@ -69,13 +46,22 @@ function convertToMarkdownElement(preElement) {
         },
     });
 
+    // Replace the pre element with the rendered HTML content
     const markdownText = preElement.textContent;
     const htmlContent = md.render(markdownText);
-
-    // Replace the pre element with the rendered HTML content
     const renderedOutput = document.createElement('div');
     renderedOutput.innerHTML = htmlContent;
     preElement.replaceWith(renderedOutput);
+
+    // Render mermaid diagrams
+    mermaid.initialize({ startOnLoad: false });
+    await mermaid.run({
+        querySelector: '.mermaid',
+    });
+    mermaid.initialize();
+
+    // Render labels 
+    highlightLabels(renderedOutput);
 
     return renderedOutput;
 }
@@ -91,8 +77,9 @@ function renderCode(str, lang) {
 
 function renderDiagram(code) {
     try {
-        mermaid.parse(code);
-        return `<div class="mermaid">${code}</div>`;
+        //mermaid.initialize({ startOnLoad: true });
+        //mermaid.parse(code);
+        return `<pre class="mermaid">${code}</pre>`;
     } catch ({ str, hash }) {
         return `<pre>${str}</pre>`;
     }
@@ -422,3 +409,5 @@ function replaceLabelWithElement(labelElement, label, config) {
     labelElement.innerHTML = labelElement.innerHTML.replace(labelRegex, newLabelElement.outerHTML);
 
 }
+
+export default initializeAsync;
