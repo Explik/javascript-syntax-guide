@@ -18,16 +18,22 @@ To set up the project, follow these steps:
 3. **Build the project:**
     To build the project for production, use:
     ```sh
-    npm run build
+    npm run build-dev
     ```
 
 4. **Serve the project:**
     Use live-server (or any other server) to open /dist/index.html in your browser.
 
-5. **Deploy the project:**
+
+## Deployment Instructions
+1. **Build the project:**
+    To build the project for production, use:
+    ```sh
+    npm run build
+    ```
+
+2. **Deploy the project:**
     To deploy the project to GitHub Pages, use:
     ```sh
     npm run deploy
     ```
-
-For more details, refer to the `package.json` file.
