@@ -748,7 +748,8 @@ function FUNCTION_NAME_LABEL(PARAMETER_LABEL_1, PARAMETER_LABEL_2, PARAMETER_LAB
   
 ```Mermaid
 flowchart TD
-  A[Statement before function call] --> B[Evaluate CONDITION_LABEL]
+  A[Statement before function call] --> A0[PARAMETER_LABEL_1 = ARGUMENT_LABEL_1\n PARAMETER_LABEL_2 = ARGUMENT_LABEL_2\n ELIPSIS_LABEL]
+  A0 --> B[Evaluate CONDITION_LABEL]
   B -->|false| C[Evaluate STATEMENT_LABEL_1]
   C --> D[Evaluate STATEMENT_LABEL_2]
   D --> E[Evaluate STATEMENT_LABEL_N]
@@ -756,6 +757,7 @@ flowchart TD
   B -->|true| F
 
   subgraph "function call"
+    A0
     B
     C
     D
