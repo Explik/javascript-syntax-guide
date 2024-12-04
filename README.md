@@ -1,4 +1,6 @@
 # JavaScript Syntax Guide
+The JavaScript Syntax Guide is a simple web application that explains JavaScript syntax using code snippets, highlights and flowcharts.
+The appliction is hosted on GitHub Pages and can be accessed [here](https://explik.github.io/javascript-syntax-guide/).
 
 ## Setup Instructions
 To set up the project, follow these steps:
